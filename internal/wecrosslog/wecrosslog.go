@@ -2,27 +2,51 @@ package wecrosslog
 
 import "os"
 
+// Logger is the logger used for the non-depth log functions.
 var Logger LoggerV1
 
-// Info logs to the INFO log
-func Info(args ...interface{}) {
-	Logger.Infoln()
+// DepthLogger is the logger used for the depth log function.
+var DepthLogger DepthLoggerV1
+
+// InfoDepth logs to the INFO log at the specified depth.
+func InfoDepth(depth int, args ...interface{}) {
+	if DepthLogger != nil {
+		DepthLogger.InfoDepth(depth, args...)
+	} else {
+		Logger.Infoln(args...)
+	}
 }
 
-// Warning logs to the WARNING log
-func Warning(args ...interface{}) {
-	Logger.Warningln()
+// WarningDepth logs to the WARNING log at the specified depth.
+func WarningDepth(depth int, args ...interface{}) {
+	if DepthLogger != nil {
+		DepthLogger.WarningDepth(depth, args...)
+	} else {
+		Logger.Warningln(args...)
+	}
 }
 
-// Error logs to the ERROR log
-func Error(args ...interface{}) {
-	Logger.Errorln()
+// ErrorDepth logs to the ERROR log at the specified depth.
+func ErrorDepth(depth int, args ...interface{}) {
+	if DepthLogger != nil {
+		DepthLogger.ErrorDepth(depth, args...)
+	} else {
+		Logger.Errorln()
+	}
 }
 
-// Fatal logs to the FATAL log
-func Fatal(args ...interface{}) {
-	Logger.Fatalln()
+// FatalDepth logs to the FATAL log at the specified depth.
+func FatalDepth(depth int, args ...interface{}) {
+	if DepthLogger != nil {
+		DepthLogger.FatalDepth(depth, args...)
+	} else {
+		Logger.Fatalln(args...)
+	}
 	os.Exit(1)
+}
+
+func V(l int) bool {
+	return Logger.V(l)
 }
 
 type LoggerV1 interface {
@@ -58,4 +82,19 @@ type LoggerV1 interface {
 	Fatalf(format string, args ...interface{})
 	// V reports whether verbosity level l is at least the requested verbose level.
 	V(l int) bool
+}
+
+// DepthLoggerV1 logs at a specified call frame. If a LoggerV1 also implements
+// DepthLoggerV1, the below functions will be called with the appropriate stack
+// depth set for trivial functions the logger may ignore.
+type DepthLoggerV1 interface {
+	LoggerV1
+	// InfoDepth logs to INFO log at the specified depth. Arguments are handled in the manner of fmt.Println.
+	InfoDepth(depth int, args ...interface{})
+	// WarningDepth logs to WARNING log at the specified depth. Arguments are handled in the manner of fmt.Println.
+	WarningDepth(depth int, args ...interface{})
+	// ErrorDepth logs to ERROR log at the specified depth. Arguments are handled in manner of fmt.Println.
+	ErrorDepth(depth int, args ...interface{})
+	// FatalDepth logs to FATAL log at the specified depth. Arguments are handled in manner of fmt.Println.
+	FatalDepth(depth int, args ...interface{})
 }

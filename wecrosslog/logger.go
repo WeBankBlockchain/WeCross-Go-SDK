@@ -3,10 +3,11 @@ package wecrosslog
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/WeBankBlockchain/WeCross-Go-SDK/internal/wecrosslog"
 	"io"
 	"log"
 	"os"
+
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/internal/wecrosslog"
 )
 
 const (
@@ -38,7 +39,11 @@ type loggerT struct {
 // SetLoggerV1 sets logger that is used in wecross to a V1 logger.
 // Not mutex-protected, should be called before any wecross functions.
 func SetLoggerV1(l wecrosslog.LoggerV1) {
+	if _, ok := l.(*componentData); ok {
+		panic("cannot use component logger as wecross logger")
+	}
 	wecrosslog.Logger = l
+	wecrosslog.DepthLogger, _ = l.(wecrosslog.DepthLoggerV1)
 }
 
 // NewLogger creates a logger with the provided writers.
@@ -78,7 +83,7 @@ func newLoggerWithConfig(infoW, waringW, errorW io.Writer, c loggerConfig) wecro
 func (g *loggerT) output(severity int, s string) {
 	sevStr := severityName[severity]
 	if !g.jsonFormat {
-		_ = g.m[severity].Output(2, fmt.Sprintf("%v: %v", sevStr, s)).Error()
+		g.m[severity].Output(2, fmt.Sprintf("%v: %v", sevStr, s))
 		return
 	}
 	b, _ := json.Marshal(map[string]string{
