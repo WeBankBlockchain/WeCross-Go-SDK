@@ -62,7 +62,7 @@ type CommonAuthInfo struct {
 	SecurityLevel SecurityLevel
 }
 
-// ProtocolInfo provides information regarding the gRPC wire protocol version,
+// ProtocolInfo provides information regarding the wecross wire protocol version,
 // security protocol, security protocol version in use, server name, etc.
 type ProtocolInfo struct {
 	// ProtocolVersion is the wecross wire protocol version.
