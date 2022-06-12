@@ -9,6 +9,8 @@ type Code uint32
 
 const (
 	Success Code = 0
+	// Canceled indicates the operation was canceled (typically by the caller).
+	Canceled Code = 1
 
 	InternalError Code = 100
 
