@@ -4,11 +4,50 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"log"
 	"os"
+	"strconv"
+	"strings"
 
 	"github.com/WeBankBlockchain/WeCross-Go-SDK/internal/wecrosslog"
 )
+
+// LoggerV1 does underlying logging work for wecrosslog.
+type LoggerV1 interface {
+	// Info logs to INFO log. Arguments are handled in the manner of fmt.Print.
+	Info(args ...interface{})
+	// Infoln logs to INFO log. Arguments are handled in the manner of fmt.Println.
+	Infoln(args ...interface{})
+	// Infof logs to INFO log. Arguments are handled in the manner of fmt.Printf.
+	Infof(format string, args ...interface{})
+	// Warning logs to WARNING log. Arguments are handled in the manner of fmt.Print.
+	Warning(args ...interface{})
+	// Warningln logs to WARNING log. Arguments are handled in the manner of fmt.Println.
+	Warningln(args ...interface{})
+	// Warningf logs to WARNING log. Arguments are handled in the manner of fmt.Printf.
+	Warningf(format string, args ...interface{})
+	// Error logs to ERROR log. Arguments are handled in the manner of fmt.Print.
+	Error(args ...interface{})
+	// Errorln logs to ERROR log. Arguments are handled in the manner of fmt.Println.
+	Errorln(args ...interface{})
+	// Errorf logs to ERROR log. Arguments are handled in the manner of fmt.Printlf.
+	Errorf(format string, args ...interface{})
+	// Fatal logs to ERROR log. Arguments are handled in the manner of fmt.Print.
+	// WeCross ensures that all Fatal logs will exit with os.Exit(1).
+	// Implementations may also call os.Exit() with a non-zero exit code.
+	Fatal(args ...interface{})
+	// Fatalln logs to ERROR log. Arguments are handled in the manner of fmt.Println.
+	// WeCross ensures that all Fatal logs will exit with os.Exit(1).
+	// Implementations may also call os.Exit() with a non-zero exit code.
+	Fatalln(args ...interface{})
+	// Fatalf logs to ERROR log. Arguments are handled in the manner of fmt.Printf.
+	// WeCross ensures that all Fatal logs will exit with os.Exit(1).
+	// Implementations may also call os.Exit() with a non-zero exit code.
+	Fatalf(format string, args ...interface{})
+	// V reports whether verbosity level l is at least the requested verbose level.
+	V(l int) bool
+}
 
 const (
 	// infoLog indicates Info severity.
@@ -78,6 +117,37 @@ func newLoggerWithConfig(infoW, waringW, errorW io.Writer, c loggerConfig) wecro
 	m = append(m, log.New(ew, "", flag))
 	m = append(m, log.New(ew, "", flag))
 	return &loggerT{m: m, v: c.verbose, jsonFormat: c.jsonFormat}
+}
+
+// newLoggerV1 creates a loggerV1 to be used as default logger.
+// All logs are written to stderr.
+func newLoggerV1() LoggerV1 {
+	errorW := ioutil.Discard
+	warningW := ioutil.Discard
+	infoW := ioutil.Discard
+
+	logLevel := os.Getenv("GRPC_GO_LOG_SEVERITY_LEVEL")
+	switch logLevel {
+	case "", "ERROR", "error": // If env is unset, set level to ERROR.
+		errorW = os.Stderr
+	case "WARNING", "warning":
+		warningW = os.Stderr
+	case "INFO", "info":
+		infoW = os.Stderr
+	}
+
+	var v int
+	vLevel := os.Getenv("GRPC_GO_LOG_VERBOSITY_LEVEL")
+	if vl, err := strconv.Atoi(vLevel); err == nil {
+		v = vl
+	}
+
+	jsonFormat := strings.EqualFold(os.Getenv("GRPC_GO_LOG_FORMATTER"), "json")
+
+	return newLoggerWithConfig(infoW, warningW, errorW, loggerConfig{
+		verbose:    v,
+		jsonFormat: jsonFormat,
+	})
 }
 
 func (g *loggerT) output(severity int, s string) {
