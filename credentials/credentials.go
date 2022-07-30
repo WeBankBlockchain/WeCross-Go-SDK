@@ -38,8 +38,8 @@ type SecurityLevel int
 
 const (
 	SslOnClientAuth SecurityLevel = iota
-	SslOff
 	SslOn
+	SslOff
 )
 
 // String returns SecurityLevel in a string format.

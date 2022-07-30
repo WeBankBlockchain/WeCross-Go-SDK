@@ -3,12 +3,14 @@ package wecross
 import (
 	"context"
 	"testing"
+	"time"
 
 	"github.com/WeBankBlockchain/WeCross-Go-SDK/credentials/insecure"
 )
 
 func (s) TestWithTimeout(t *testing.T) {
-	conn, err := Dial("http://43.158.200.203:8250",
+	conn, err := Dial("passthrough:///Non-Existent.Server:8250",
+		WithTimeout(time.Millisecond),
 		WithBlock(),
 		WithTransportCredentials(insecure.NewCredentials()))
 	if err == nil {

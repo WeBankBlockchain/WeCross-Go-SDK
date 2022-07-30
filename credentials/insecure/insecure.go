@@ -9,7 +9,7 @@ import (
 
 // NewCredentials returns a credentials which disables transport security.
 func NewCredentials() credentials.TransportCredentials {
-	return nil
+	return insecureTC{}
 }
 
 // insecureTC implements the insecure transport credentials. The handshake

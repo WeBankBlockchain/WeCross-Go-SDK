@@ -9,7 +9,7 @@ import (
 	"github.com/WeBankBlockchain/WeCross-Go-SDK/internal/wecrosslog"
 )
 
-func TestLoggerV2Severity(t *testing.T) {
+func TestLoggerV1Severity(t *testing.T) {
 	buffers := []*bytes.Buffer{new(bytes.Buffer), new(bytes.Buffer), new(bytes.Buffer)}
 	SetLoggerV1(NewLogger(buffers[infoLog], buffers[warningLog], buffers[errorLog]))
 

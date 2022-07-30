@@ -16,7 +16,7 @@ type dialOptions struct {
 	bs              internalbackoff.Stratgy
 	block           bool
 	returnLastError bool
-	timout          time.Duration
+	timeout         time.Duration
 	copts           transport.ConnectOptions
 }
 
@@ -65,5 +65,13 @@ func WithTransportCredentials(creds credentials.TransportCredentials) DialOption
 func WithBlock() DialOption {
 	return newFuncDialOption(func(o *dialOptions) {
 		o.block = true
+	})
+}
+
+// WithTimeout returns a DialOption that configures a timeout for dialing a
+// ClientConn initially. This is valid if and only if WithBlock() is present.
+func WithTimeout(d time.Duration) DialOption {
+	return newFuncDialOption(func(o *dialOptions) {
+		o.timeout = d
 	})
 }

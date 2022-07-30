@@ -116,9 +116,9 @@ func DialContext(ctx context.Context, target string, opts ...DialOption) (conn *
 		}
 	}
 
-	if cc.dopts.timout > 0 {
+	if cc.dopts.timeout > 0 {
 		var cancel context.CancelFunc
-		ctx, cancel = context.WithTimeout(ctx, cc.dopts.timout)
+		ctx, cancel = context.WithTimeout(ctx, cc.dopts.timeout)
 		defer cancel()
 	}
 	defer func() {
@@ -157,6 +157,13 @@ func DialContext(ctx context.Context, target string, opts ...DialOption) (conn *
 					return nil, ctx.Err()
 				}
 			}
+			if !cc.WaitForStateChange(ctx, s) {
+				// ctx got timeout or canceled.
+				if err = cc.connectionError(); err != nil && cc.dopts.returnLastError {
+					return nil, err
+				}
+				return nil, ctx.Err()
+			}
 		}
 	}
 
@@ -189,6 +196,21 @@ type ClientConn struct {
 
 	lceMu               sync.Mutex // protects lastConnectionError
 	lastConnectionError error
+}
+
+// WaitForStateChange waits until the connectivity.State of ClientConn changes from sourceState or
+// ctx expires. A true value is returned in former case and false in latter.
+func (cc *ClientConn) WaitForStateChange(ctx context.Context, sourceState connectivity.State) bool {
+	ch := cc.csMgr.getNotifyChan()
+	if cc.csMgr.getState() != sourceState {
+		return true
+	}
+	select {
+	case <-ctx.Done():
+		return false
+	case <-ch:
+		return true
+	}
 }
 
 // GetState returns the connectivity.State of ClientConn.
@@ -234,6 +256,15 @@ func (csm *connectivityStateManager) getState() connectivity.State {
 	csm.mu.Lock()
 	defer csm.mu.Unlock()
 	return csm.state
+}
+
+func (csm *connectivityStateManager) getNotifyChan() <-chan struct{} {
+	csm.mu.Lock()
+	defer csm.mu.Unlock()
+	if csm.notifyChan == nil {
+		csm.notifyChan = make(chan struct{})
+	}
+	return csm.notifyChan
 }
 
 // addrConn is a network connection to a given address.
