@@ -4,6 +4,8 @@ import (
 	"context"
 	"fmt"
 	"net"
+
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/attributes"
 )
 
 // PerRPCCredentials defines the common interface for the credentials which need to
@@ -123,4 +125,14 @@ type Bundle interface {
 	//
 	// NewWithMode returns nil if the requested mode is not supported.
 	NewWithMode(mode string) (Bundle, error)
+}
+
+// ClientHandshakeInfo holds data to be passed to ClientHandshake. This makes
+// it possible to pass arbitrary data to the handshaker from resolver,
+// balancer etc. Individual credential implementations control the actual
+// format of the data that they are willing to receive.
+type ClientHandshakeInfo struct {
+	// Attributes contains the attributes for the address. It could be provided
+	// by the resolver, balancer etc.
+	Attributes *attributes.Attributes
 }

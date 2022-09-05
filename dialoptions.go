@@ -1,6 +1,8 @@
 package wecross
 
 import (
+	"context"
+	"net"
 	"time"
 
 	"github.com/WeBankBlockchain/WeCross-Go-SDK/credentials"
@@ -10,14 +12,15 @@ import (
 	internalbackoff "github.com/WeBankBlockchain/WeCross-Go-SDK/internal/backoff"
 )
 
-// dialOptions configure a Dial call. dialOptions are set by the DialOption
-// values passed to Dial.
+// dialOptions configure a DialContext call. dialOptions are set by the DialOption
+// values passed to DialContext.
 type dialOptions struct {
-	bs              internalbackoff.Stratgy
-	block           bool
-	returnLastError bool
-	timeout         time.Duration
-	copts           transport.ConnectOptions
+	bs                internalbackoff.Stratgy
+	block             bool
+	returnLastError   bool
+	timeout           time.Duration
+	copts             transport.ConnectOptions
+	minConnectTimeout func() time.Duration
 }
 
 // DialOption configures how we set up the connection.
@@ -50,6 +53,29 @@ func newFuncDialOption(f func(*dialOptions)) *funcDialOption {
 	}
 }
 
+// WithContextDialer returns a DialOption that sets a dialer to create
+// connections. If FailOnNonTempDialError() is set to true, and an error is
+// returned by f, WeCross checks the error's Temporary() method to decide if it
+// should try to reconnect to the network address.
+func WithContextDialer(f func(context.Context, string) (net.Conn, error)) DialOption {
+	return newFuncDialOption(func(o *dialOptions) {
+		o.copts.Dialer = f
+	})
+}
+
+// FailOnNonTempDialError returns a DialOption that specifies if WeCross fails on
+// non-temporary dial errors. If f is true, and dialer returns a non-temporary
+// error, WeCross will fail the connection to the network address and won't try to
+// reconnect. The default value of FailOnNonTempDialError is false.
+//
+// FailOnNonTempDialError only affects the initial dial, and does not do
+// anything useful unless you are also using WithBlock().
+func FailOnNonTempDialError(f bool) DialOption {
+	return newFuncDialOption(func(o *dialOptions) {
+		o.copts.FailOnNonTempDialError = f
+	})
+}
+
 // WithTransportCredentials returns a DialOption which configures a connection
 // level security credentials (e.g., TLS/SSL). This should not be used together
 // with WithCredentialsBundle.
@@ -59,19 +85,11 @@ func WithTransportCredentials(creds credentials.TransportCredentials) DialOption
 	})
 }
 
-// WithBlock returns a DialOption which makes callers of Dial block until the
-// underlying connection is up. Without this, Dial returns immediately and
+// WithBlock returns a DialOption which makes callers of DialContext block until the
+// underlying connection is up. Without this, DialContext returns immediately and
 // connecting the server happens in background.
 func WithBlock() DialOption {
 	return newFuncDialOption(func(o *dialOptions) {
 		o.block = true
-	})
-}
-
-// WithTimeout returns a DialOption that configures a timeout for dialing a
-// ClientConn initially. This is valid if and only if WithBlock() is present.
-func WithTimeout(d time.Duration) DialOption {
-	return newFuncDialOption(func(o *dialOptions) {
-		o.timeout = d
 	})
 }
