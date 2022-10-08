@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="baa19abb-3b5d-4795-8284-70500889a0be" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/codes.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/constants.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logger/test.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/path.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/common.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/errors.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/types/CallBack.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/types/Request.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/types/Response.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/types/data.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/constants.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/constants.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
