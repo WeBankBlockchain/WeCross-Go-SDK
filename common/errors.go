@@ -7,15 +7,15 @@ type WeCrossSDKError struct {
 	Content string
 }
 
-func NewWeCrossSDKFromString(errorCode ErrorCode, content string) WeCrossSDKError {
-	return WeCrossSDKError{
+func NewWeCrossSDKFromString(errorCode ErrorCode, content string) *WeCrossSDKError {
+	return &WeCrossSDKError{
 		Code:    errorCode,
 		Content: content,
 	}
 }
 
-func NewWeCrossSDKFromError(errorCode ErrorCode, err error) WeCrossSDKError {
-	return WeCrossSDKError{
+func NewWeCrossSDKFromError(errorCode ErrorCode, err error) *WeCrossSDKError {
+	return &WeCrossSDKError{
 		Code:    errorCode,
 		Content: err.Error(),
 	}

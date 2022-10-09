@@ -1,7 +1,7 @@
 package common
 
 const (
-	APPLICATION_CONFIG_FILE = "classpath:application.toml"
+	APPLICATION_CONFIG_FILE = "./application.toml" // NOTE: should be raw path!
 	TEMPLATE_URL            = "http://127.0.0.1:8250/"
 	XA_TRANSACTION_ID_KEY   = "XA_TRANSACTION_ID"
 	XA_TRANSACTION_SEQ_KEY  = "XA_TRANSACTION_SEQ"

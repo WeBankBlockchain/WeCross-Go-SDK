@@ -13,7 +13,7 @@ type CallBack struct {
 	isFinish  bool // should be changed in atomic manner
 
 	onSuccess func(response *Response)
-	onFailed  func(err common.WeCrossSDKError)
+	onFailed  func(err *common.WeCrossSDKError)
 
 	quit chan struct{}
 }
@@ -34,14 +34,14 @@ func (cb *CallBack) CallOnSuccess(response *Response) {
 	}
 }
 
-func (cb *CallBack) CallOnFailed(err common.WeCrossSDKError) {
+func (cb *CallBack) CallOnFailed(err *common.WeCrossSDKError) {
 	if !cb.GetAndSetIsFinish(true) {
 		close(cb.quit)
 		cb.onFailed(err)
 	}
 }
 
-func NewCallBack(onSuccess func(response *Response), onFailed func(err common.WeCrossSDKError)) *CallBack {
+func NewCallBack(onSuccess func(response *Response), onFailed func(err *common.WeCrossSDKError)) *CallBack {
 	newCB := &CallBack{
 		isFinish:  false,
 		onSuccess: onSuccess,

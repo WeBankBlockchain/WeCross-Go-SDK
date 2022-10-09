@@ -5,14 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="baa19abb-3b5d-4795-8284-70500889a0be" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/common/common.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/errors.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc/types/CallBack.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc/types/Request.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc/types/Response.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc/types/data.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/RemoteCall.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/service/WeCrossRPCService.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/service/WeCrossService.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/service/connection.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/service/httpAsyncClient/httpAsyncClient.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/types/response/responseTypes.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/config.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/uri.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/url.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/url_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/constants.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/constants.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/errors.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/errors.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logger/test.log" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc/types/CallBack.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/CallBack.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +34,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../../Program Files/Go" />
+  <component name="GOROOT" url="file://$USER_HOME$/sdk/go1.19" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -52,6 +60,8 @@
     &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;configurable..is.expanded&quot;: &quot;false&quot;,
+    &quot;configurable.GoLibrariesConfigurable.is.expanded&quot;: &quot;true&quot;,
     &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
     &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/EXIA&quot;,
@@ -59,7 +69,8 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;go.sdk&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -67,7 +78,7 @@
       <recent name="C:\Users\EXIA\Documents\GitHub\WeCross-Go-SDK\common" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.TestLogSystemInstance in WeCross-Go-SDK/logger">
+  <component name="RunManager" selected="Go Test.TestFormatUrlPrefix in WeCross-Go-SDK/utils (2)">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="WeCross-Go-SDK" />
       <working_directory value="$PROJECT_DIR$" />
@@ -77,15 +88,40 @@
       <filePath value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestDialContextFailFast in github.com/WeBankBlockchain/WeCross-Go-SDK" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestFormatUrlPrefix in WeCross-Go-SDK/utils (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="WeCross-Go-SDK" />
-      <working_directory value="$PROJECT_DIR$" />
+      <working_directory value="$PROJECT_DIR$/utils" />
+      <root_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <package value="github.com/WeBankBlockchain/WeCross-Go-SDK" />
+      <package value="WeCross-Go-SDK/utils" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <framework value="gotest" />
-      <pattern value="^\QTestDialContextFailFast\E$" />
+      <pattern value="^\QTestFormatUrlPrefix\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestFormatUrlPrefix in WeCross-Go-SDK/utils (2)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="WeCross-Go-SDK" />
+      <working_directory value="$PROJECT_DIR$/utils" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="WeCross-Go-SDK/utils" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestFormatUrlPrefix\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestFormatUrlPrefix in WeCross-Go-SDK/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="WeCross-Go-SDK" />
+      <working_directory value="$PROJECT_DIR$/utils" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="WeCross-Go-SDK/utils" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestFormatUrlPrefix\E$" />
       <method v="2" />
     </configuration>
     <configuration name="TestLogSystemInstance in WeCross-Go-SDK/logger" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -124,30 +160,6 @@
       <pattern value="^\QTestLogSystemInstance\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestLoggerPrintf in WeCross_Go_SDK/logger" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="WeCross-Go-SDK" />
-      <working_directory value="$PROJECT_DIR$/logger" />
-      <root_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="WeCross_Go_SDK/logger" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <pattern value="^\QTestLoggerPrintf\E$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestMultipleLogSystems in WeCross_Go_SDK/logger" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="WeCross-Go-SDK" />
-      <working_directory value="$PROJECT_DIR$/logger" />
-      <root_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="WeCross_Go_SDK/logger" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <pattern value="^\QTestMultipleLogSystems\E$" />
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
       <module name="WeCross-Go-SDK" />
       <working_directory value="$PROJECT_DIR$" />
@@ -160,11 +172,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestFormatUrlPrefix in WeCross-Go-SDK/utils (2)" />
+        <item itemvalue="Go Test.TestFormatUrlPrefix in WeCross-Go-SDK/utils (1)" />
+        <item itemvalue="Go Test.TestFormatUrlPrefix in WeCross-Go-SDK/utils" />
         <item itemvalue="Go Test.TestLogSystemInstance in WeCross-Go-SDK/logger" />
         <item itemvalue="Go Test.TestLogSystemInstance in WeCross_Go_SDK/logger" />
-        <item itemvalue="Go Test.TestMultipleLogSystems in WeCross_Go_SDK/logger" />
-        <item itemvalue="Go Test.TestLoggerPrintf in WeCross_Go_SDK/logger" />
-        <item itemvalue="Go Test.TestDialContextFailFast in github.com/WeBankBlockchain/WeCross-Go-SDK" />
       </list>
     </recent_temporary>
   </component>
