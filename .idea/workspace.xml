@@ -5,22 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="baa19abb-3b5d-4795-8284-70500889a0be" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/rpc/RemoteCall.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc/service/WeCrossRPCService.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc/service/WeCrossService.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc/service/connection.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc/service/httpAsyncClient/httpAsyncClient.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc/types/response/responseTypes.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/config.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/uri.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/url.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/url_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/eles/commandList.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/service/authentication/AuthenticationManager.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/types/Request_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/constants.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/constants.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/errors.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/errors.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logger/test.log" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/types/CallBack.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/CallBack.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc/service/WeCrossRPCService.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/service/WeCrossRPCService.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc/service/WeCrossService.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/service/WeCrossService.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc/service/httpAsyncClient/httpAsyncClient.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/service/httpAsyncClient/httpAsyncClient.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc/types/Request.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/Request.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc/types/Response.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/Response.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc/types/response/responseTypes.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/response/responseTypes.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +72,7 @@
       <recent name="C:\Users\EXIA\Documents\GitHub\WeCross-Go-SDK\common" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.TestFormatUrlPrefix in WeCross-Go-SDK/utils (2)">
+  <component name="RunManager" selected="Go Test.TestRequest_ToJson in WeCross-Go-SDK/rpc/types">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="WeCross-Go-SDK" />
       <working_directory value="$PROJECT_DIR$" />
@@ -148,16 +142,16 @@
       <pattern value="^\QTestLogSystemInstance\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestLogSystemInstance in WeCross_Go_SDK/logger" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestRequest_ToJson in WeCross-Go-SDK/rpc/types" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="WeCross-Go-SDK" />
-      <working_directory value="$PROJECT_DIR$/logger" />
+      <working_directory value="$PROJECT_DIR$/rpc/types" />
       <root_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <package value="WeCross_Go_SDK/logger" />
+      <package value="WeCross-Go-SDK/rpc/types" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <framework value="gotest" />
-      <pattern value="^\QTestLogSystemInstance\E$" />
+      <pattern value="^\QTestRequest_ToJson\E$" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
@@ -172,11 +166,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestRequest_ToJson in WeCross-Go-SDK/rpc/types" />
         <item itemvalue="Go Test.TestFormatUrlPrefix in WeCross-Go-SDK/utils (2)" />
         <item itemvalue="Go Test.TestFormatUrlPrefix in WeCross-Go-SDK/utils (1)" />
         <item itemvalue="Go Test.TestFormatUrlPrefix in WeCross-Go-SDK/utils" />
         <item itemvalue="Go Test.TestLogSystemInstance in WeCross-Go-SDK/logger" />
-        <item itemvalue="Go Test.TestLogSystemInstance in WeCross_Go_SDK/logger" />
       </list>
     </recent_temporary>
   </component>

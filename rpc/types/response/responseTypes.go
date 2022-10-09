@@ -3,7 +3,7 @@ package response
 type ResponseType string
 
 var (
-	ValidResponseTypes = []ResponseType{
-		"",
+	ValidResponseTypes = map[ResponseType]bool{
+		"": true,
 	}
 )

@@ -8,6 +8,6 @@ import (
 
 type WeCrossService interface {
 	Init() *common.WeCrossSDKError
-	Send(httpMethod string, uri string, request *types.Request, responseType response.ResponseType) *types.Response
-	AsynSend(httpMethod string, uri string, request *types.Request, responseType response.ResponseType) *types.Response
+	Send(httpMethod string, uri string, request *types.Request, responseType response.ResponseType) (*types.Response, *common.WeCrossSDKError)
+	AsyncSend(httpMethod string, uri string, request *types.Request, responseType response.ResponseType, back *types.CallBack)
 }

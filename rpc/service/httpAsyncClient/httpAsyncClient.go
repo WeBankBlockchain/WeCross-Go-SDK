@@ -3,6 +3,7 @@ package httpAsyncClient
 import (
 	"WeCross-Go-SDK/common"
 	"WeCross-Go-SDK/rpc/service"
+	"bytes"
 	"crypto/tls"
 	"crypto/x509"
 	"net"
@@ -78,4 +79,21 @@ func NewAsyncHttpClient(conn *service.Connection) (*AsyncHttpClient, *common.WeC
 		Timeout:       HTTP_CLIENT_TIME_OUT,
 	}
 	return &AsyncHttpClient{httpClient: httpClient}, nil
+}
+
+func (ac *AsyncHttpClient) Prepare(method, url string, body []byte) (*http.Request, *common.WeCrossSDKError) {
+	body_reader := bytes.NewReader(body)
+	request, err := http.NewRequest(method, url, body_reader)
+	if err != nil {
+		return nil, common.NewWeCrossSDKFromString(common.RPC_ERROR, "fail in AsyncHttpClient.Prepare:"+err.Error())
+	}
+	return request, nil
+}
+
+func (ac *AsyncHttpClient) SendRequest(request *http.Request) (*http.Response, *common.WeCrossSDKError) {
+	response, err := ac.httpClient.Do(request)
+	if err != nil {
+		return nil, common.NewWeCrossSDKFromError(common.RPC_ERROR, err)
+	}
+	return response, nil
 }
