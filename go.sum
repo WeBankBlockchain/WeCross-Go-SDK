@@ -1,0 +1,12 @@
+github.com/AspieSoft/go-regex v1.4.4 h1:lVMlKBoLUGlieQ8PcR6j+41mqZNF5mmQCVyoAwlDB1k=
+github.com/AspieSoft/go-regex v1.4.4/go.mod h1:0SpGKvczEwt4D/RYg4u5+pMyP/fkd3Ubhbqvx/Uodn8=
+github.com/AspieSoft/go-syncterval v1.0.2 h1:kIFS/ZHrySSLonCGN6lcpcwOKST3DmQfxIfqtcoj/lk=
+github.com/AspieSoft/go-syncterval v1.0.2/go.mod h1:KDPQRl3rF9/SDALWisEz2eb8APyFpRL0ufJY8QaHuKY=
+github.com/AspieSoft/go-ttlcache v1.0.1 h1:ceYerlpAJGyecQ40olJSYIweAMdN4t6zHwujh1+Kndw=
+github.com/AspieSoft/go-ttlcache v1.0.1/go.mod h1:+bmizNKJhoosFnjMHjxadfTMQEhvrzAZIJugc5nJuhk=
+github.com/GRbit/go-pcre v1.0.0 h1:Qv/YZ/tr436mFgep3Y0WAzKOZvAKGOGD0cAMwUcsEJo=
+github.com/GRbit/go-pcre v1.0.0/go.mod h1:OuMGyux1WcDrKNwDn9MyQLa2kzxQS/xFyVqXFZ/ay0I=
+github.com/alphadose/haxmap v0.2.0 h1:lncWIcLQYALBiHLYz3aDuNvp6tcj3rGiHziG9Jrava0=
+github.com/alphadose/haxmap v0.2.0/go.mod h1:Fu37Wlmj7cR++vSLgRTu3fGy8wpjHGmMypM2aclkc1A=
+github.com/pelletier/go-toml v1.9.5 h1:4yBQzkHv+7BHq2PQUZF3Mx0IYxG7LsP222s7Agd3ve8=
+github.com/pelletier/go-toml v1.9.5/go.mod h1:u1nR/EPcESfeI/szUZKdtJ0xRNbUoANCkoOuaOx1Y+c=
