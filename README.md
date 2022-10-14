@@ -5,7 +5,10 @@ The Golang SDK for WeCross
 
 * [WeCross-Java-SDK](https://github.com/WeBankBlockchain/WeCross-Java-SDK)
 
+目前已有两种实现正在开发，分别对应以下分支，敬请期待，欢迎贡献！
 
+* [develop-robin](https://github.com/WeBankBlockchain/WeCross-Go-SDK/tree/develop-robin) (maintain by: [Robin](https://github.com/RobinLG))
+* [develop-leo](https://github.com/WeBankBlockchain/WeCross-Go-SDK/tree/develop-leo)  (maintain by: [Leo](https://github.com/leo201313))
 
 ## 贡献说明
 
