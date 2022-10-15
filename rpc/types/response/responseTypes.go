@@ -1,9 +1,11 @@
 package response
 
+import "reflect"
+
 type ResponseType string
 
 var (
-	ValidResponseTypes = map[ResponseType]bool{
-		"": true,
+	ValidResponseTypes = map[ResponseType]reflect.Type{
+		"UAResponse": reflect.TypeOf(new(UAReceipt)),
 	}
 )

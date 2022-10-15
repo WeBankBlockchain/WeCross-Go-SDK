@@ -9,7 +9,8 @@ import (
 type Request struct {
 	Version  string    `json:"version"`
 	Data     Data      `json:"data"`
-	callBack *CallBack `json:"-"`
+	Ext      Data      `json:"-"`
+	CallBack *CallBack `json:"-"`
 }
 
 func NewRequest(data Data) *Request {

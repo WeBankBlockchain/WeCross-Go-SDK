@@ -1,5 +1,7 @@
 package common
 
+import "strconv"
+
 type ErrorCode int
 
 const (
@@ -20,6 +22,10 @@ const (
 	RESOURCE_INACTIVE ErrorCode = 301
 	INVALID_CONTRACT  ErrorCode = 302
 )
+
+func (ec ErrorCode) ToString() string {
+	return strconv.Itoa(int(ec))
+}
 
 type StatusCode int
 

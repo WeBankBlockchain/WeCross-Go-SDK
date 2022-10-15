@@ -6,7 +6,9 @@ import (
 	"WeCross-Go-SDK/rpc/eles"
 	"WeCross-Go-SDK/rpc/service/authentication"
 	"WeCross-Go-SDK/rpc/service/httpAsyncClient"
+	"WeCross-Go-SDK/rpc/service/transactionContext"
 	"WeCross-Go-SDK/rpc/types"
+	"WeCross-Go-SDK/rpc/types/request"
 	"WeCross-Go-SDK/rpc/types/response"
 	"WeCross-Go-SDK/utils"
 	"fmt"
@@ -28,13 +30,16 @@ type WeCrossRPCService struct {
 	urlPrefix  string
 
 	authenticationManager *authentication.AuthenticationManager
+	transactionContext    *transactionContext.TransactionContext
 }
 
 func NewWeCrossRPCService() *WeCrossRPCService {
 	logger := logger.NewLogger(WeCrossRPCServiceTag)
+	txCtx := transactionContext.NewTransactionContex()
 	return &WeCrossRPCService{
 		logger:                logger,
 		authenticationManager: authentication.NewAuthenticationManager(),
+		transactionContext:    txCtx,
 	}
 }
 
@@ -74,7 +79,7 @@ func (wcs *WeCrossRPCService) Init() *common.WeCrossSDKError {
 	return nil
 }
 
-func (wcs *WeCrossRPCService) Send(httpMethod string, uri string, request *types.Request, responseType response.ResponseType) (*types.Response, *common.WeCrossSDKError) {
+func (wcs *WeCrossRPCService) Send(httpMethod string, uri string, inputRequest *types.Request, responseType response.ResponseType) (*types.Response, *common.WeCrossSDKError) {
 	var finalResponse *types.Response
 	var finalError *common.WeCrossSDKError
 	finish := make(chan struct{})
@@ -99,10 +104,29 @@ func (wcs *WeCrossRPCService) Send(httpMethod string, uri string, request *types
 	}
 
 	callBack := types.NewCallBack(onSuccess, onFailed)
-	wcs.AsyncSend(httpMethod, uri, request, responseType, callBack)
+	wcs.AsyncSend(httpMethod, uri, inputRequest, responseType, callBack)
 	outTimer := time.NewTimer(Max_Send_Wait_Time)
 	select {
 	case <-finish:
+		wcs.logger.Debugf("response: %s", finalResponse.ToString())
+		if finalError != nil {
+			return finalResponse, finalError
+		}
+		
+		if responseType == "UAResponse" {
+			if uaRq, ok := inputRequest.Data.(*request.UARequest); ok {
+				err := wcs.getUAResponseInfo(uri, uaRq, finalResponse)
+				if err != nil {
+					return finalResponse, err
+				}
+			} else if uaRq, ok := inputRequest.Ext.(*request.UARequest); ok {
+				err := wcs.getUAResponseInfo(uri, uaRq, finalResponse)
+				if err != nil {
+					return finalResponse, err
+				}
+			}
+		}
+
 		return finalResponse, finalError
 	case <-outTimer.C:
 		return nil, common.NewWeCrossSDKFromString(common.RPC_ERROR, "fain in Send: time out while waiting for response")
@@ -178,6 +202,28 @@ func (wcs *WeCrossRPCService) checkRequest(request *types.Request) *common.WeCro
 	}
 	if len(request.GetVersion()) == 0 {
 		return common.NewWeCrossSDKFromString(common.RPC_ERROR, "Request version is empty")
+	}
+	return nil
+}
+
+func (wcs *WeCrossRPCService) getUAResponseInfo(uri string, uaRequest *request.UARequest, uaResponse *types.Response) *common.WeCrossSDKError {
+	query := utils.GetUriQuery(uri)
+	if query == "login" {
+		credential := ""
+		uaRp, ok := uaResponse.Data.(*response.UAReceipt)
+		if ok {
+			credential = uaRp.Credential
+		}
+		wcs.logger.Infof("CurrentUser: %s", uaRequest.UserName)
+		if len(credential) == 0 {
+			wcs.logger.Errorln("Login fail, credential in UAResponse is null")
+			return common.NewWeCrossSDKFromString(common.RPC_ERROR, "Login fail, credential in UAResponse is null!")
+		}
+		wcs.authenticationManager.SetCurrentUser(uaRequest.UserName, credential)
+	}
+	if query == "logout" {
+		wcs.logger.Infof("CurrentUser: %s logout.", wcs.authenticationManager.GetCurrentUser())
+		wcs.authenticationManager.ClearCurrentUser()
 	}
 	return nil
 }

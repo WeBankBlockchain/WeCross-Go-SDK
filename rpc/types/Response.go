@@ -3,31 +3,84 @@ package types
 import (
 	"WeCross-Go-SDK/common"
 	"WeCross-Go-SDK/rpc/types/response"
+	"WeCross-Go-SDK/utils"
+	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 )
 
 type Response struct {
-	version   string
-	errorCode common.ErrorCode
-	message   string
-	data      Data
+	Version   string           `json:"version"`
+	ErrorCode common.ErrorCode `json:"errorCode"`
+	Message   string           `json:"message"`
+	Data      Data             `json:"data"`
 }
 
 func NewResponse(errorCode common.ErrorCode, message string, data Data) *Response {
 	return &Response{
-		version:   common.CURRENT_VERSION,
-		errorCode: errorCode,
-		message:   message,
-		data:      data,
+		Version:   common.CURRENT_VERSION,
+		ErrorCode: errorCode,
+		Message:   message,
+		Data:      data,
 	}
 }
 
 func (rp *Response) ToString() string {
-	str := fmt.Sprintf("Response{version='%s', errorCode=%d, message='%s', data=%s}", rp.version, rp.errorCode, rp.message, rp.data.ToString())
+	dataString := ""
+	if rp.Data != nil {
+		dataString = rp.Data.ToString()
+	}
+	str := fmt.Sprintf("Response{version='%s', errorCode=%d, message='%s', data=%s}", rp.Version, rp.ErrorCode, rp.Message, dataString)
 	return str
 }
 
+// ParseResponse use the given responseType to parse a Response
 func ParseResponse(httpResponse *http.Response, responseType response.ResponseType) *Response {
-	panic("to implement")
+	tempResponse := new(Response)
+	tempResponse.Version = common.CURRENT_VERSION
+
+	if httpResponse == nil {
+		tempResponse.ErrorCode = common.RPC_ERROR
+		return tempResponse
+	}
+	defer httpResponse.Body.Close()
+
+	_, ok := response.ValidResponseTypes[responseType]
+	if !ok {
+		tempResponse.ErrorCode = common.INTERNAL_ERROR
+		return tempResponse
+	}
+
+	jsonBytes, err := io.ReadAll(httpResponse.Body)
+	if err != nil {
+		tempResponse.ErrorCode = common.RPC_ERROR
+		return tempResponse
+	}
+
+	m := make(map[string]interface{})
+	err = json.Unmarshal(jsonBytes, &m)
+	if err != nil {
+		tempResponse.ErrorCode = common.RPC_ERROR
+		return tempResponse
+	}
+
+	tempResponse.Version = utils.AnyToString(m["version"])
+	tempResponse.ErrorCode = utils.AnyToErrorCode(m["errorCode"])
+	tempResponse.Message = utils.AnyToString(m["message"])
+
+	var data Data
+	dataBytes, err := json.Marshal(m["data"])
+
+	switch responseType { // Add response type here!
+	case "UAResponse":
+		uaReceipt := new(response.UAReceipt)
+		uaReceipt.ParseSelfFromJson(dataBytes)
+		data = uaReceipt
+	default:
+
+	}
+	tempResponse.Data = data
+
+	return tempResponse
 }
