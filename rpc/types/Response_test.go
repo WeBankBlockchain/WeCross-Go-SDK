@@ -19,9 +19,15 @@ var testCases = []testCase{
 		responseJson: uaResponseJson,
 		responseType: "UAResponse",
 	},
+	{
+		caseName:     "XAResponse",
+		responseJson: xaResponseJson,
+		responseType: "XAResponse",
+	},
 }
 
-var uaResponseJson = `
+var (
+	uaResponseJson = `
 {
   "errorCode": 0,
   "message": "unununknown",
@@ -61,6 +67,36 @@ var uaResponseJson = `
     }
   }
 }`
+	xaResponseJson = `{
+  "errorCode": 0,
+  "data": {
+    "status": 0,
+    "chainErrorMessages": [
+      {
+        "path": "test/test1",
+        "message": "test fail"
+      },
+      {
+        "path": "test/test2",
+        "message": "test fail"
+      }
+    ]
+  },
+  "xarawResponse": {
+    "status": 0,
+    "chainErrorMessages": [
+      {
+        "path": "test/test1",
+        "message": "test fail"
+      },
+      {
+        "path": "test/test2",
+        "message": "test fail"
+      }
+    ]
+  }
+}`
+)
 
 type mockIOReadCloser struct {
 	reader *bytes.Reader

@@ -73,10 +73,18 @@ func ParseResponse(httpResponse *http.Response, responseType response.ResponseTy
 	dataBytes, err := json.Marshal(m["data"])
 
 	switch responseType { // Add response type here!
-	case "UAResponse":
+	case response.CommonResponse:
+		nullResponse := new(response.NullResponse)
+		data = nullResponse
+	case response.UAResponse:
 		uaReceipt := new(response.UAReceipt)
 		uaReceipt.ParseSelfFromJson(dataBytes)
 		data = uaReceipt
+	case response.XAResponse:
+		rawXAResponse := new(response.RawXAResponse)
+		rawXAResponse.ParseSelfFromJson(dataBytes)
+		data = rawXAResponse
+
 	default:
 
 	}

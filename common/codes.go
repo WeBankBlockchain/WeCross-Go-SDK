@@ -31,4 +31,5 @@ type StatusCode int
 
 const (
 	SUCCESS StatusCode = 0
+	FAIL    StatusCode = -1
 )

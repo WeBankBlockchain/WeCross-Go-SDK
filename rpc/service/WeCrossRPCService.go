@@ -17,7 +17,7 @@ import (
 )
 
 const (
-	WeCrossRPCServiceTag = "WeCrossRPC"
+	WeCrossRPCServiceTag = "WeCrossRPCService"
 
 	Max_Send_Wait_Time = 20 * time.Second
 )
@@ -112,8 +112,8 @@ func (wcs *WeCrossRPCService) Send(httpMethod string, uri string, inputRequest *
 		if finalError != nil {
 			return finalResponse, finalError
 		}
-		
-		if responseType == "UAResponse" {
+
+		if responseType == response.UAResponse {
 			if uaRq, ok := inputRequest.Data.(*request.UARequest); ok {
 				err := wcs.getUAResponseInfo(uri, uaRq, finalResponse)
 				if err != nil {
@@ -125,6 +125,10 @@ func (wcs *WeCrossRPCService) Send(httpMethod string, uri string, inputRequest *
 					return finalResponse, err
 				}
 			}
+		}
+
+		if responseType == response.XAResponse {
+			wcs.getXAResponseInfo(uri, inputRequest, finalResponse)
 		}
 
 		return finalResponse, finalError
@@ -226,4 +230,21 @@ func (wcs *WeCrossRPCService) getUAResponseInfo(uri string, uaRequest *request.U
 		wcs.authenticationManager.ClearCurrentUser()
 	}
 	return nil
+}
+
+func (wcs *WeCrossRPCService) getXAResponseInfo(uri string, inRequest *types.Request, xaResponse *types.Response) {
+	query := utils.GetUriQuery(uri)
+	if query == "startXATransaction" && xaResponse.ErrorCode == 0 {
+		xaRequest, ok := inRequest.Data.(*request.XATransactionRequest)
+		if !ok {
+			return
+		}
+		txCtx := wcs.transactionContext.GetContex()
+		txCtx.TxID = xaRequest.XaTransactionID
+		txCtx.Seq = 1
+		txCtx.PathInTransaction = xaRequest.Paths
+		wcs.transactionContext.SetContex(txCtx)
+	} else if (query == "commitXATransaction") || query == "rollbackXATransaction" && xaResponse.ErrorCode == 0 {
+		wcs.transactionContext.ClearAll()
+	}
 }
