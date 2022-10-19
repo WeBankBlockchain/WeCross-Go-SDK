@@ -5,22 +5,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="baa19abb-3b5d-4795-8284-70500889a0be" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/rpc/WeCrossRPC.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc/WeCrossRPCModel.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc/eles/ChainErrorMessage.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc/types/request/XATransactionRequest.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc/types/response/NullResponse.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc/types/response/RawXAResponse.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc/types/response/Stubs.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/cryptos/hash.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/cryptos/rsa.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/cryptos/rsa_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/eles/LoginSalt.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/eles/resource/ResourceDetail.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/eles/resource/Resources.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/eles/xa/XA.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/eles/xa/XATransaction.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/eles/xa/XATransactionStep.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/types/request/CommandRequest.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/types/request/ListXATransactionsRequest.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/types/request/LoginRequest.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/types/request/RegisterRequest.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/types/request/ResourceRequest.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/types/request/StringRequest.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/types/request/TransactionRequest.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/types/response/AuthCodeReceipt.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/types/response/Pub.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/types/response/RawXATransactionListResponse.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/types/response/StringResponse.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc/types/response/TXReceipt.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/codes.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/codes.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/RemoteCall.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/RemoteCall.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc/WeCrossRPC.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/WeCrossRPC.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc/WeCrossRPCModel.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/WeCrossRPCModel.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc/eles/account/ChainAccount.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/eles/account/ChainAccount.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc/eles/account/UniversalAccount.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/eles/account/UniversalAccount.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rpc/service/WeCrossRPCService.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/service/WeCrossRPCService.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rpc/service/transactionContext/transactionContext.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/service/transactionContext/transactionContext.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/service/transactionContext/transactionContext_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/service/transactionContext/transactionContext_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rpc/types/Response.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/Response.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rpc/types/Response_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/Response_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/types/data.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/data.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc/types/request/UARequest.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/request/UARequest.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc/types/request/XATransactionRequest.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/request/XATransactionRequest.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rpc/types/response/responseTypes.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/response/responseTypes.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,21 +94,35 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/common/cryptos" />
+      <recent name="$PROJECT_DIR$/rpc/types/request" />
       <recent name="$PROJECT_DIR$/rpc/types/response" />
       <recent name="C:\Users\EXIA\Documents\GitHub\WeCross-Go-SDK\common" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.TestTransactionContex in WeCross-Go-SDK/rpc/service/transactionContext">
-    <configuration name="TestFormatUrlPrefix in WeCross-Go-SDK/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Go Test.TestEncryptBase64 in WeCross-Go-SDK/common/cryptos">
+    <configuration name="TestCreatePublicKey in WeCross-Go-SDK/common/cryptos" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="WeCross-Go-SDK" />
-      <working_directory value="$PROJECT_DIR$/utils" />
+      <working_directory value="$PROJECT_DIR$/common/cryptos" />
       <root_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <package value="WeCross-Go-SDK/utils" />
+      <package value="WeCross-Go-SDK/common/cryptos" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <framework value="gotest" />
-      <pattern value="^\QTestFormatUrlPrefix\E$" />
+      <pattern value="^\QTestCreatePublicKey\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestEncryptBase64 in WeCross-Go-SDK/common/cryptos" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="WeCross-Go-SDK" />
+      <working_directory value="$PROJECT_DIR$/common/cryptos" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="WeCross-Go-SDK/common/cryptos" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestEncryptBase64\E$" />
       <method v="2" />
     </configuration>
     <configuration name="TestLogSystemInstance in WeCross_Go_SDK/logger (1)" type="GoTestRunConfiguration" factoryName="Go Test" nameIsGenerated="true">
@@ -104,18 +135,6 @@
       <filePath value="$PROJECT_DIR$" />
       <framework value="gotest" />
       <pattern value="^\QTestLogSystemInstance\E$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestNewUnversalAccount in WeCross-Go-SDK/rpc/eles/account" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="WeCross-Go-SDK" />
-      <working_directory value="$PROJECT_DIR$/rpc/eles/account" />
-      <root_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="WeCross-Go-SDK/rpc/eles/account" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <pattern value="^\QTestNewUnversalAccount\E$" />
       <method v="2" />
     </configuration>
     <configuration name="TestParseResponse in WeCross-Go-SDK/rpc/types" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -156,11 +175,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Test.TestTransactionContex in WeCross-Go-SDK/rpc/service/transactionContext" />
+        <item itemvalue="Go Test.TestEncryptBase64 in WeCross-Go-SDK/common/cryptos" />
+        <item itemvalue="Go Test.TestCreatePublicKey in WeCross-Go-SDK/common/cryptos" />
         <item itemvalue="Go Test.TestParseResponse in WeCross-Go-SDK/rpc/types" />
+        <item itemvalue="Go Test.TestTransactionContex in WeCross-Go-SDK/rpc/service/transactionContext" />
         <item itemvalue="Go Test.TestUniversalAccountParse in WeCross-Go-SDK/rpc/eles/account" />
-        <item itemvalue="Go Test.TestNewUnversalAccount in WeCross-Go-SDK/rpc/eles/account" />
-        <item itemvalue="Go Test.TestFormatUrlPrefix in WeCross-Go-SDK/utils" />
       </list>
     </recent_temporary>
   </component>
@@ -173,7 +192,13 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>

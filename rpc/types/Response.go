@@ -2,6 +2,8 @@ package types
 
 import (
 	"WeCross-Go-SDK/common"
+	"WeCross-Go-SDK/rpc/eles/account"
+	"WeCross-Go-SDK/rpc/eles/resource"
 	"WeCross-Go-SDK/rpc/types/response"
 	"WeCross-Go-SDK/utils"
 	"encoding/json"
@@ -72,10 +74,22 @@ func ParseResponse(httpResponse *http.Response, responseType response.ResponseTy
 	var data Data
 	dataBytes, err := json.Marshal(m["data"])
 
-	switch responseType { // Add response type here!
+	switch responseType { // TODO: Add your response type here!
 	case response.CommonResponse:
 		nullResponse := new(response.NullResponse)
 		data = nullResponse
+	case response.StubResponse:
+		stubs := new(response.Stubs)
+		stubs.ParseSelfFromJson(dataBytes)
+		data = stubs
+	case response.PubResponse:
+		pub := new(response.Pub)
+		pub.ParseSelfFromJson(dataBytes)
+		data = pub
+	case response.AuthCodeResponse:
+		authCodeReceipt := new(response.AuthCodeReceipt)
+		authCodeReceipt.ParseSelfFromJson(dataBytes)
+		data = authCodeReceipt
 	case response.UAResponse:
 		uaReceipt := new(response.UAReceipt)
 		uaReceipt.ParseSelfFromJson(dataBytes)
@@ -84,6 +98,25 @@ func ParseResponse(httpResponse *http.Response, responseType response.ResponseTy
 		rawXAResponse := new(response.RawXAResponse)
 		rawXAResponse.ParseSelfFromJson(dataBytes)
 		data = rawXAResponse
+	case response.AccountResponse:
+		universalAccount := account.ParseUniversalAccountFromJson(dataBytes)
+		data = universalAccount
+	case response.ResourceResponse:
+		resources := new(resource.Resources)
+		resources.ParseSelfFromJson(dataBytes)
+		data = resources
+	case response.TransactionResponse:
+		txReceipt := new(response.TXReceipt)
+		txReceipt.ParseSelfFromJson(dataBytes)
+		data = txReceipt
+	case response.CommandResponse:
+		stringResponse := new(response.StringResponse)
+		stringResponse.ParseSelfFromJson(dataBytes)
+		data = stringResponse
+	case response.XATransactionListResponse:
+		rawXATransactionListResponse := new(response.RawXATransactionListResponse)
+		rawXATransactionListResponse.ParseSelfFromJson(dataBytes)
+		data = rawXATransactionListResponse
 
 	default:
 

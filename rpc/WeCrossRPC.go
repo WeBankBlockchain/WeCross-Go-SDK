@@ -1,6 +1,9 @@
 package rpc
 
-import "WeCross-Go-SDK/rpc/eles/account"
+import (
+	"WeCross-Go-SDK/common"
+	"WeCross-Go-SDK/rpc/eles/account"
+)
 
 type WeCrossRPC interface {
 	Test() *RemoteCall
@@ -21,11 +24,13 @@ type WeCrossRPC interface {
 	GetXATransaction(transactionID string, paths []string) *RemoteCall
 	CustomCommand(command string, path string, args ...any) *RemoteCall
 	ListXATransactions(size int) *RemoteCall
-	Register(name, password string) *RemoteCall
-	Login(name, password string) *RemoteCall
+	Register(name, password string) (*RemoteCall, *common.WeCrossSDKError)
+	Login(name, password string) (*RemoteCall, *common.WeCrossSDKError)
 	Logout() *RemoteCall
-	AddChainAccount(chainType string, chainAccount *account.ChainAccount) *RemoteCall
-	SetDefaultAccount(chainType string, chainAccount *account.ChainAccount, keyID int) *RemoteCall // chainAccount and keyID should be input at least one, and first use the chainAccount
+	AddChainAccount(chainType string, chainAccount account.ChainAccount) *RemoteCall
 
+	// chainAccount and keyID should be input at least one, and first use the chainAccount.
+	// when use keyID to represent the account, please input chainAccount as nil
+	SetDefaultAccount(chainType string, chainAccount account.ChainAccount, keyID int) *RemoteCall
 	GetCurrentTransactionID() string
 }

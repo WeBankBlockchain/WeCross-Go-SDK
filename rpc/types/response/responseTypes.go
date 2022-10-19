@@ -1,21 +1,39 @@
 package response
 
-import "reflect"
+import (
+	"WeCross-Go-SDK/rpc/eles/account"
+	"WeCross-Go-SDK/rpc/eles/resource"
+	"reflect"
+)
 
 type ResponseType string
 
 const (
-	CommonResponse ResponseType = "CommonResponse"
-	StubResponse   ResponseType = "StubResponse"
-	UAResponse     ResponseType = "UAResponse"
-	XAResponse     ResponseType = "XAResponse"
+	CommonResponse            ResponseType = "CommonResponse"
+	StubResponse              ResponseType = "StubResponse"
+	PubResponse               ResponseType = "PubResponse"
+	AuthCodeResponse          ResponseType = "AuthCodeResponse"
+	AccountResponse           ResponseType = "AccountResponse"
+	ResourceResponse          ResponseType = "ResourceResponse"
+	TransactionResponse       ResponseType = "TransactionResponse"
+	CommandResponse           ResponseType = "CommandResponse"
+	XATransactionListResponse ResponseType = "XATransactionListResponse"
+	UAResponse                ResponseType = "UAResponse"
+	XAResponse                ResponseType = "XAResponse"
 )
 
 var (
 	ValidResponseTypes = map[ResponseType]reflect.Type{
-		CommonResponse: reflect.TypeOf(new(NullResponse)),
-		StubResponse:   reflect.TypeOf(new(Stubs)),
-		UAResponse:     reflect.TypeOf(new(UAReceipt)),
-		XAResponse:     reflect.TypeOf(new(RawXAResponse)),
+		CommonResponse:            reflect.TypeOf(new(NullResponse)),
+		StubResponse:              reflect.TypeOf(new(Stubs)),
+		PubResponse:               reflect.TypeOf(new(Pub)),
+		AuthCodeResponse:          reflect.TypeOf(new(AuthCodeReceipt)),
+		AccountResponse:           reflect.TypeOf(new(account.UniversalAccount)),
+		ResourceResponse:          reflect.TypeOf(new(resource.Resources)),
+		TransactionResponse:       reflect.TypeOf(new(TXReceipt)),
+		CommandResponse:           reflect.TypeOf(new(StringResponse)),
+		XATransactionListResponse: reflect.TypeOf(new(RawXATransactionListResponse)),
+		UAResponse:                reflect.TypeOf(new(UAReceipt)),
+		XAResponse:                reflect.TypeOf(new(RawXAResponse)),
 	}
 )

@@ -35,11 +35,10 @@ type WeCrossRPCService struct {
 
 func NewWeCrossRPCService() *WeCrossRPCService {
 	logger := logger.NewLogger(WeCrossRPCServiceTag)
-	txCtx := transactionContext.NewTransactionContex()
 	return &WeCrossRPCService{
 		logger:                logger,
 		authenticationManager: authentication.NewAuthenticationManager(),
-		transactionContext:    txCtx,
+		transactionContext:    transactionContext.GlobalTransactionContext,
 	}
 }
 

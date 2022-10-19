@@ -15,6 +15,16 @@ type UniversalAccount struct {
 	chainAccounts []ChainAccount
 }
 
+func (ua *UniversalAccount) ParseSelfFromJson(valueBytes []byte) {
+	tempUa := ParseUniversalAccountFromJson(valueBytes)
+	ua.username = tempUa.username
+	ua.password = tempUa.password
+	ua.pubKey = tempUa.pubKey
+	ua.secKey = tempUa.secKey
+	ua.uaID = tempUa.uaID
+	ua.chainAccounts = tempUa.chainAccounts
+}
+
 // PlainUniversalAccount is used to prevent users from accessing to the private information (password and secKey) directly.
 type PlainUniversalAccount struct {
 	UserName      string         `json:"username"`

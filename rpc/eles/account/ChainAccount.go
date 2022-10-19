@@ -1,5 +1,7 @@
 package account
 
+import "fmt"
+
 type ChainAccountType string
 
 const (
@@ -18,6 +20,11 @@ type CommonAccount struct {
 	KeyID       int              `json:"keyID"`
 	AccountType ChainAccountType `json:"type"`
 	IsDefault   bool             `json:"isDefault"`
+}
+
+func (ca *CommonAccount) ToString() string {
+	str := fmt.Sprintf("CommonAccount{keyID=%d, type='%s', isDefault=%t}", ca.KeyID, ca.AccountType, ca.IsDefault)
+	return str
 }
 
 func (ca *CommonAccount) GetAccountType() ChainAccountType {

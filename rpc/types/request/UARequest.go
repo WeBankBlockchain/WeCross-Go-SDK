@@ -16,6 +16,16 @@ type UARequest struct {
 	ChainAccount account.ChainAccount `json:"chainAccount"`
 }
 
+func NewUARequest(username, password string) *UARequest {
+	return &UARequest{
+		UserName:     username,
+		PassWord:     password,
+		ClientType:   "sdk",
+		AuthCode:     "",
+		ChainAccount: nil,
+	}
+}
+
 func (ur *UARequest) ToString() string {
 	str := fmt.Sprintf("UARequest{username='%s', password='%s', clientType='%s', authCode='%s'", ur.UserName, ur.PassWord, ur.ClientType, ur.AuthCode)
 	if ur.ChainAccount != nil {

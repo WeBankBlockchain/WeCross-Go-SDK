@@ -17,12 +17,17 @@ var testCases = []testCase{
 	{
 		caseName:     "UAResponse",
 		responseJson: uaResponseJson,
-		responseType: "UAResponse",
+		responseType: response.UAResponse,
 	},
 	{
 		caseName:     "XAResponse",
 		responseJson: xaResponseJson,
-		responseType: "XAResponse",
+		responseType: response.XAResponse,
+	},
+	{
+		caseName:     "ResourceResponse",
+		responseJson: resourceJson,
+		responseType: response.ResourceResponse,
 	},
 }
 
@@ -92,6 +97,36 @@ var (
       {
         "path": "test/test2",
         "message": "test fail"
+      }
+    ]
+  }
+}`
+	resourceJson = `
+{
+  "errorCode": 0,
+  "data": {
+    "resourceDetails": [
+      {
+        "path": "test.test.test",
+        "distance": 2,
+        "stubType": "testType",
+        "properties": {
+          "property2": 0,
+          "property1": "unknown"
+        }
+      }
+    ]
+  },
+  "resources": {
+    "resourceDetails": [
+      {
+        "path": "test.test.test",
+        "distance": 2,
+        "stubType": "testType",
+        "properties": {
+          "property2": 0,
+          "property1": "unknown"
+        }
       }
     ]
   }

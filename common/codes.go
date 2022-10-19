@@ -2,7 +2,7 @@ package common
 
 import "strconv"
 
-type ErrorCode int
+type ErrorCode int // 0 is success
 
 const (
 	INTERNAL_ERROR ErrorCode = 100

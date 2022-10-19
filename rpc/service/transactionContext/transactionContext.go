@@ -17,6 +17,8 @@ const (
 
 var TransactionContextLogger = logger.NewLogger(TransactionContextTag)
 
+var GlobalTransactionContext = NewTransactionContex()
+
 type TransactionContext struct {
 	baseCtx    context.Context
 	currentCtx context.Context
