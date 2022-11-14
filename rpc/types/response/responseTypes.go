@@ -2,7 +2,7 @@ package response
 
 import (
 	"WeCross-Go-SDK/rpc/eles/account"
-	"WeCross-Go-SDK/rpc/eles/resource"
+	"WeCross-Go-SDK/rpc/eles/resources"
 	"reflect"
 )
 
@@ -15,6 +15,7 @@ const (
 	AuthCodeResponse          ResponseType = "AuthCodeResponse"
 	AccountResponse           ResponseType = "AccountResponse"
 	ResourceResponse          ResponseType = "ResourceResponse"
+	ResourceDetailResponse    ResponseType = "ResourceDetailResponse"
 	TransactionResponse       ResponseType = "TransactionResponse"
 	CommandResponse           ResponseType = "CommandResponse"
 	XATransactionListResponse ResponseType = "XATransactionListResponse"
@@ -29,7 +30,8 @@ var (
 		PubResponse:               reflect.TypeOf(new(Pub)),
 		AuthCodeResponse:          reflect.TypeOf(new(AuthCodeReceipt)),
 		AccountResponse:           reflect.TypeOf(new(account.UniversalAccount)),
-		ResourceResponse:          reflect.TypeOf(new(resource.Resources)),
+		ResourceResponse:          reflect.TypeOf(new(resources.Resources)),
+		ResourceDetailResponse:    reflect.TypeOf(new(resources.ResourceDetail)),
 		TransactionResponse:       reflect.TypeOf(new(TXReceipt)),
 		CommandResponse:           reflect.TypeOf(new(StringResponse)),
 		XATransactionListResponse: reflect.TypeOf(new(RawXATransactionListResponse)),

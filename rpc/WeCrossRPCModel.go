@@ -93,8 +93,14 @@ func (w *WeCrossRPCModel) ListResources(ignoreRemote bool) *RemoteCall {
 }
 
 func (w *WeCrossRPCModel) Detail(path string) *RemoteCall {
-	//TODO implement me
-	panic("implement me")
+	uri := "/resource/" + strings.Replace(path, ".", "/", -1) + "/detail"
+	return &RemoteCall{
+		weCrossService: w.weCrossService,
+		httpMethod:     "POST",
+		uri:            uri,
+		responseType:   response.ResourceDetailResponse,
+		request:        types.NewRequest(nil),
+	}
 }
 
 func (w *WeCrossRPCModel) Call(path, method string, args ...string) *RemoteCall {

@@ -5,22 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="baa19abb-3b5d-4795-8284-70500889a0be" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/fortests/tomldir/application-sample.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fortests/tomldir/application.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fortests/tomldir/ca.crt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fortests/tomldir/cert.cnf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fortests/tomldir/ssl.crt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fortests/tomldir/ssl.key" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc/WeCrossRPC_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc/service/connections/connection_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/config_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resource/Resource.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/resourcePath.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/resourcePath_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/constants.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/constants.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/service/WeCrossRPCService.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/service/WeCrossRPCService.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/service/connection.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/service/connections/connection.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/service/httpAsyncClient/httpAsyncClient.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/service/httpAsyncClient/httpAsyncClient.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/path.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/path.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc/WeCrossRPCModel.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/WeCrossRPCModel.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc/eles/resource/ResourceDetail.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/eles/resources/ResourceDetail.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc/eles/resource/Resources.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/eles/resources/Resources.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc/types/Response.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/Response.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc/types/response/responseTypes.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/response/responseTypes.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/path.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/localPath.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +28,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" url="file://$USER_HOME$/sdk/go1.19" />
+  <component name="GOROOT" url="file:///usr/local/go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -65,7 +59,7 @@
     &quot;configurable.GoLibrariesConfigurable.is.expanded&quot;: &quot;true&quot;,
     &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
     &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/EXIA&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/leocao&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -76,14 +70,26 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/rpc/eles/resources" />
+      <recent name="$PROJECT_DIR$/rpc/types/response" />
       <recent name="C:\Users\EXIA\Documents\GitHub\WeCross-Go-SDK\fortests\tomldir" />
       <recent name="C:\Users\EXIA\Documents\GitHub\WeCross-Go-SDK\rpc\service\connections" />
       <recent name="$PROJECT_DIR$/common/cryptos" />
-      <recent name="$PROJECT_DIR$/rpc/types/request" />
-      <recent name="$PROJECT_DIR$/rpc/types/response" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.TestConnection_LoadToml in WeCross-Go-SDK/rpc/service/connections (1)">
+  <component name="RunManager" selected="Go Test.TestParseResponse in WeCross-Go-SDK/rpc/types">
+    <configuration name="TestCheckResourcePath in WeCross-Go-SDK/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="WeCross-Go-SDK" />
+      <working_directory value="$PROJECT_DIR$/utils" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="WeCross-Go-SDK/utils" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestCheckResourcePath\E$" />
+      <method v="2" />
+    </configuration>
     <configuration name="TestConnection_LoadToml in WeCross-Go-SDK/rpc/service/connections (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="WeCross-Go-SDK" />
       <working_directory value="$PROJECT_DIR$/rpc/service/connections" />
@@ -108,30 +114,6 @@
       <pattern value="^\QTestConnection_LoadToml\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestCreatePublicKey in WeCross-Go-SDK/common/cryptos" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="WeCross-Go-SDK" />
-      <working_directory value="$PROJECT_DIR$/common/cryptos" />
-      <root_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="WeCross-Go-SDK/common/cryptos" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <pattern value="^\QTestCreatePublicKey\E$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestEncryptBase64 in WeCross-Go-SDK/common/cryptos" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="WeCross-Go-SDK" />
-      <working_directory value="$PROJECT_DIR$/common/cryptos" />
-      <root_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="WeCross-Go-SDK/common/cryptos" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <pattern value="^\QTestEncryptBase64\E$" />
-      <method v="2" />
-    </configuration>
     <configuration name="TestLogSystemInstance in WeCross_Go_SDK/logger (1)" type="GoTestRunConfiguration" factoryName="Go Test" nameIsGenerated="true">
       <module name="WeCross-Go-SDK" />
       <working_directory value="$PROJECT_DIR$/logger" />
@@ -142,6 +124,18 @@
       <filePath value="$PROJECT_DIR$" />
       <framework value="gotest" />
       <pattern value="^\QTestLogSystemInstance\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestParseResponse in WeCross-Go-SDK/rpc/types" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="WeCross-Go-SDK" />
+      <working_directory value="$PROJECT_DIR$/rpc/types" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="WeCross-Go-SDK/rpc/types" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestParseResponse\E$" />
       <method v="2" />
     </configuration>
     <configuration name="TestReadClassPath in WeCross-Go-SDK/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -158,11 +152,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestParseResponse in WeCross-Go-SDK/rpc/types" />
+        <item itemvalue="Go Test.TestCheckResourcePath in WeCross-Go-SDK/utils" />
         <item itemvalue="Go Test.TestConnection_LoadToml in WeCross-Go-SDK/rpc/service/connections (1)" />
         <item itemvalue="Go Test.TestReadClassPath in WeCross-Go-SDK/utils" />
         <item itemvalue="Go Test.TestConnection_LoadToml in WeCross-Go-SDK/rpc/service/connections" />
-        <item itemvalue="Go Test.TestEncryptBase64 in WeCross-Go-SDK/common/cryptos" />
-        <item itemvalue="Go Test.TestCreatePublicKey in WeCross-Go-SDK/common/cryptos" />
       </list>
     </recent_temporary>
   </component>

@@ -3,7 +3,7 @@ package types
 import (
 	"WeCross-Go-SDK/common"
 	"WeCross-Go-SDK/rpc/eles/account"
-	"WeCross-Go-SDK/rpc/eles/resource"
+	"WeCross-Go-SDK/rpc/eles/resources"
 	"WeCross-Go-SDK/rpc/types/response"
 	"WeCross-Go-SDK/utils"
 	"encoding/json"
@@ -102,9 +102,13 @@ func ParseResponse(httpResponse *http.Response, responseType response.ResponseTy
 		universalAccount := account.ParseUniversalAccountFromJson(dataBytes)
 		data = universalAccount
 	case response.ResourceResponse:
-		resources := new(resource.Resources)
+		resources := new(resources.Resources)
 		resources.ParseSelfFromJson(dataBytes)
 		data = resources
+	case response.ResourceDetailResponse:
+		resourceDetail := new(resources.ResourceDetail)
+		resourceDetail.ParseSelfFromJson(dataBytes)
+		data = resourceDetail
 	case response.TransactionResponse:
 		txReceipt := new(response.TXReceipt)
 		txReceipt.ParseSelfFromJson(dataBytes)
