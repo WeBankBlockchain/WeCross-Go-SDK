@@ -1,4 +1,4 @@
-package service
+package connections
 
 import (
 	"WeCross-Go-SDK/common"
@@ -35,12 +35,14 @@ func NewConnection(config *toml.Tree) (*Connection, *common.WeCrossSDKError) {
 
 	sslSwitch, ok := config.Get("connection.sslSwitch").(int64)
 	if !ok {
-		return nil, common.NewWeCrossSDKFromString(common.FIELD_MISSING, "Something wrong with parsing [connection.sslSwitch], please check configuration")
+		sslSwitch = 0 // default 0
+		//return nil, common.NewWeCrossSDKFromString(common.FIELD_MISSING, "Something wrong with parsing [connection.sslSwitch], please check configuration")
 	}
 
 	urlPrefix, ok := config.Get("connection.urlPrefix").(string)
 	if !ok {
-		return nil, common.NewWeCrossSDKFromString(common.FIELD_MISSING, "Something wrong with parsing [connection.urlPrefix], please check configuration")
+		urlPrefix = "" // could be empty
+		//return nil, common.NewWeCrossSDKFromString(common.FIELD_MISSING, "Something wrong with parsing [connection.urlPrefix], please check configuration")
 	}
 	formatedUrlPrefix, err := utils.FormatUrlPrefix(urlPrefix)
 	if err != nil {
@@ -66,13 +68,13 @@ func (conn *Connection) GetServer() string {
 	return conn.server
 }
 func (conn *Connection) GetSslKey() string {
-	return conn.sslKey
+	return utils.ReadClassPath(conn.sslKey)
 }
 func (conn *Connection) GetSslCert() string {
-	return conn.sslCert
+	return utils.ReadClassPath(conn.sslCert)
 }
 func (conn *Connection) GetCaCert() string {
-	return conn.caCert
+	return utils.ReadClassPath(conn.caCert)
 }
 func (conn *Connection) GetSslSwitch() int {
 	return conn.sslSwitch

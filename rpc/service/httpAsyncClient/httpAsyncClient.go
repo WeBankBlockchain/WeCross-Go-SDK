@@ -2,7 +2,7 @@ package httpAsyncClient
 
 import (
 	"WeCross-Go-SDK/common"
-	"WeCross-Go-SDK/rpc/service"
+	"WeCross-Go-SDK/rpc/service/connections"
 	"bytes"
 	"crypto/tls"
 	"crypto/x509"
@@ -21,7 +21,7 @@ type AsyncHttpClient struct {
 	httpClient *http.Client
 }
 
-func NewAsyncHttpClient(conn *service.Connection) (*AsyncHttpClient, *common.WeCrossSDKError) {
+func NewAsyncHttpClient(conn *connections.Connection) (*AsyncHttpClient, *common.WeCrossSDKError) {
 	dialer := &net.Dialer{
 		Timeout:   HTTP_CLIENT_TIME_OUT,
 		KeepAlive: 15 * time.Second,

@@ -5,6 +5,7 @@ import (
 	"WeCross-Go-SDK/logger"
 	"WeCross-Go-SDK/rpc/eles"
 	"WeCross-Go-SDK/rpc/service/authentication"
+	"WeCross-Go-SDK/rpc/service/connections"
 	"WeCross-Go-SDK/rpc/service/httpAsyncClient"
 	"WeCross-Go-SDK/rpc/service/transactionContext"
 	"WeCross-Go-SDK/rpc/types"
@@ -43,11 +44,11 @@ func NewWeCrossRPCService() *WeCrossRPCService {
 }
 
 func (wcs *WeCrossRPCService) Init() *common.WeCrossSDKError {
-	config, err := utils.GetToml(common.APPLICATION_CONFIG_FILE)
+	config, err := utils.GetToml(utils.ReadClassPath(common.APPLICATION_CONFIG_FILE))
 	if err != nil {
 		return err
 	}
-	connection, err := NewConnection(config)
+	connection, err := connections.NewConnection(config)
 	if err != nil {
 		return err
 	}

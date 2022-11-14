@@ -1,10 +1,13 @@
 package common
 
 const (
-	APPLICATION_CONFIG_FILE = "./application.toml" // NOTE: should be raw path!
-	TEMPLATE_URL            = "http://127.0.0.1:8250/"
-	XA_TRANSACTION_ID_KEY   = "XA_TRANSACTION_ID"
-	XA_TRANSACTION_SEQ_KEY  = "XA_TRANSACTION_SEQ"
+	// NOTE: raw path like ./application.toml is recommended,
+	// but path written with a prefix 'classpath' is also supported.
+	APPLICATION_CONFIG_FILE = "classpath:application.toml"
+
+	TEMPLATE_URL           = "http://127.0.0.1:8250/"
+	XA_TRANSACTION_ID_KEY  = "XA_TRANSACTION_ID"
+	XA_TRANSACTION_SEQ_KEY = "XA_TRANSACTION_SEQ"
 
 	// alphabet(upper or lower case) + digit + character("_-") ，length in (4,16)
 	USERNAME_PATTERN = "^[a-zA-Z0-9_-]{4,16}$"
