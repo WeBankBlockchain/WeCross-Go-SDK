@@ -39,8 +39,12 @@ func NewWeCrossRPCService() *WeCrossRPCService {
 	return &WeCrossRPCService{
 		logger:                logger,
 		authenticationManager: authentication.NewAuthenticationManager(),
-		transactionContext:    transactionContext.GlobalTransactionContext,
+		transactionContext:    transactionContext.NewTransactionContex(),
 	}
+}
+
+func (wcs *WeCrossRPCService) SetClassPath(dirpath string) {
+	utils.SetClassPath(dirpath)
 }
 
 func (wcs *WeCrossRPCService) Init() *common.WeCrossSDKError {
@@ -247,4 +251,8 @@ func (wcs *WeCrossRPCService) getXAResponseInfo(uri string, inRequest *types.Req
 	} else if (query == "commitXATransaction") || query == "rollbackXATransaction" && xaResponse.ErrorCode == 0 {
 		wcs.transactionContext.ClearAll()
 	}
+}
+
+func (wcs *WeCrossRPCService) GetTransactionContex() *transactionContext.TxCtx {
+	return wcs.transactionContext.GetContex()
 }

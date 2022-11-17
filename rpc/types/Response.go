@@ -64,6 +64,7 @@ func ParseResponse(httpResponse *http.Response, responseType response.ResponseTy
 	err = json.Unmarshal(jsonBytes, &m)
 	if err != nil {
 		tempResponse.ErrorCode = common.RPC_ERROR
+		tempResponse.Message = "Cannot unmarshal data"
 		return tempResponse
 	}
 
@@ -73,6 +74,11 @@ func ParseResponse(httpResponse *http.Response, responseType response.ResponseTy
 
 	var data Data
 	dataBytes, err := json.Marshal(m["data"])
+	if err != nil {
+		tempResponse.ErrorCode = common.RPC_ERROR
+		tempResponse.Message = "Cannot unmarshal data"
+		return tempResponse
+	}
 
 	switch responseType { // TODO: Add your response type here!
 	case response.CommonResponse:

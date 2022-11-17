@@ -158,6 +158,12 @@ func generateHttpResponse(body string) *http.Response {
 	return httpResponse
 }
 
+func TestParseUAReceipt(t *testing.T) {
+	rsp := ParseResponse(generateHttpResponse(testCases[0].responseJson), testCases[0].responseType)
+	uaReceipt, _ := rsp.Data.(*response.UAReceipt)
+	t.Logf("got Universal Account Info:\n%s", uaReceipt.UniversalAccount.ToString())
+}
+
 func TestParseResponse(t *testing.T) {
 	for i, tc := range testCases {
 		response := ParseResponse(generateHttpResponse(tc.responseJson), tc.responseType)

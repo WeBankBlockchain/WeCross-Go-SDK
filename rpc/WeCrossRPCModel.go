@@ -7,7 +7,6 @@ import (
 	"WeCross-Go-SDK/rpc/eles"
 	"WeCross-Go-SDK/rpc/eles/account"
 	"WeCross-Go-SDK/rpc/service"
-	"WeCross-Go-SDK/rpc/service/transactionContext"
 	"WeCross-Go-SDK/rpc/types"
 	"WeCross-Go-SDK/rpc/types/request"
 	"WeCross-Go-SDK/rpc/types/response"
@@ -105,7 +104,7 @@ func (w *WeCrossRPCModel) Detail(path string) *RemoteCall {
 
 func (w *WeCrossRPCModel) Call(path, method string, args ...string) *RemoteCall {
 	transactionRequest := request.NewTransactionRequest(method, args)
-	currentTxCtx := transactionContext.GlobalTransactionContext.GetContex()
+	currentTxCtx := w.weCrossService.GetTransactionContex()
 	txID := currentTxCtx.TxID
 	if txID != "" && currentTxCtx.IsPathInTransaction(path) {
 		transactionRequest.AddOption(common.XA_TRANSACTION_ID_KEY, txID)
@@ -129,11 +128,11 @@ func (w *WeCrossRPCModel) SendTransaction(path, method string, args ...string) *
 
 func (w *WeCrossRPCModel) Invoke(path, method string, args ...string) *RemoteCall {
 	transactionRequest := request.NewTransactionRequest(method, args)
-	currentTxCtx := transactionContext.GlobalTransactionContext.GetContex()
+	currentTxCtx := w.weCrossService.GetTransactionContex()
 	xaTransactionID := currentTxCtx.TxID
-	if xaTransactionID != "" && currentTxCtx.IsPathInTransaction(xaTransactionID) {
+	if xaTransactionID != "" && currentTxCtx.IsPathInTransaction(path) {
 		transactionRequest.AddOption(common.XA_TRANSACTION_ID_KEY, xaTransactionID)
-		xaTransactionSeq := currentTxCtx.Seq
+		xaTransactionSeq := currentTxCtx.CurrentXATransactionSeq()
 		transactionRequest.AddOption(common.XA_TRANSACTION_SEQ_KEY, xaTransactionSeq)
 		w.logger.Infof("invoke: TransactionID exist, turn to execTransaction, TransactionID is %s, Seq is %d", xaTransactionID, xaTransactionSeq)
 	}
@@ -155,8 +154,8 @@ func (w *WeCrossRPCModel) CallXA(transactionID, path, method string, args ...str
 }
 
 func (w *WeCrossRPCModel) SendXATransaction(transactionID, path, method string, args ...string) *RemoteCall {
-	currentTxCtx := transactionContext.GlobalTransactionContext.GetContex()
-	xaTransactionSeq := currentTxCtx.Seq
+	currentTxCtx := w.weCrossService.GetTransactionContex()
+	xaTransactionSeq := currentTxCtx.CurrentXATransactionSeq()
 	transactionRequest := request.NewTransactionRequest(method, args)
 	transactionRequest.AddOption(common.XA_TRANSACTION_ID_KEY, transactionID)
 	transactionRequest.AddOption(common.XA_TRANSACTION_SEQ_KEY, xaTransactionSeq)
@@ -324,7 +323,7 @@ func (w *WeCrossRPCModel) SetDefaultAccount(chainType string, chainAccount accou
 }
 
 func (w *WeCrossRPCModel) GetCurrentTransactionID() string {
-	currentTxCtx := transactionContext.GlobalTransactionContext.GetContex()
+	currentTxCtx := w.weCrossService.GetTransactionContex()
 	if currentTxCtx.TxID == "" {
 		w.logger.Warnf("getCurrentTransactionID: Current TransactionID is null.")
 		return ""

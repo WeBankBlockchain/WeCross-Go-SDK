@@ -14,12 +14,22 @@ const (
 type ChainAccount interface {
 	GetAccountType() ChainAccountType
 	ToString() string
+	ToFormatString() string
+	ToDetailString() string
 }
 
 type CommonAccount struct {
 	KeyID       int              `json:"keyID"`
 	AccountType ChainAccountType `json:"type"`
 	IsDefault   bool             `json:"isDefault"`
+}
+
+func (ca *CommonAccount) ToFormatString() string {
+	return ca.ToString()
+}
+
+func (ca *CommonAccount) ToDetailString() string {
+	return ca.ToString()
 }
 
 func (ca *CommonAccount) ToString() string {

@@ -16,7 +16,7 @@ type TXReceipt struct {
 }
 
 func (tr *TXReceipt) ToString() string {
-	str := fmt.Sprintf("Receipt{errorCode=%d, errorMessage='%s', hash='%s', extraHashes=%v, blockNumber=%d, result=%v}", tr.ErrorCode, tr.Message, tr.ExtraHashes, tr.BlockNumber, tr.Result)
+	str := fmt.Sprintf("Receipt{errorCode=%d, errorMessage='%s', hash='%s', extraHashes=%v, blockNumber=%d, result=%v}", tr.ErrorCode, tr.Message, tr.Hash, tr.ExtraHashes, tr.BlockNumber, tr.Result)
 	return str
 }
 

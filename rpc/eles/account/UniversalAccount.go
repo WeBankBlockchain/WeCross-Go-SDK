@@ -35,6 +35,20 @@ type PlainUniversalAccount struct {
 	ChainAccounts []ChainAccount `json:"chainAccounts"`
 }
 
+// ConvertIntoUnsafe converts the UniversalAccount into a plain one that can be accessed without any limits,
+// which is not safe at all. We recommend not use this function in most time, and just use the ToString
+// function to print out info of UniversalAccount.
+func (ua *UniversalAccount) ConvertIntoUnsafe() *PlainUniversalAccount {
+	return &PlainUniversalAccount{
+		UserName:      ua.username,
+		PassWord:      ua.password,
+		PubKey:        ua.pubKey,
+		SecKey:        ua.secKey,
+		UaID:          ua.uaID,
+		ChainAccounts: ua.chainAccounts,
+	}
+}
+
 func NewUniversalAccount(username, password, pubKey, secKey, uaID string, accountsList []ChainAccount) *UniversalAccount {
 	return &UniversalAccount{
 		username:      username,
@@ -66,6 +80,32 @@ func (ua *UniversalAccount) ToString() string {
 	if ua.chainAccounts != nil {
 		for i := 0; i < len(ua.chainAccounts); i++ {
 			str += ua.chainAccounts[i].ToString() + ","
+		}
+		str = strings.TrimSuffix(str, ",")
+	}
+	str += "]}"
+	return str
+}
+
+func (ua *UniversalAccount) ToFormatString() string {
+	str := "{" + "\"username\":\"" + ua.username + "\"" + ", \"pubKey\":\"" + ua.pubKey + "\"" + ", \"uaID\":\"" + ua.uaID + "\""
+	str += ", \"chainAccounts\": ["
+	if ua.chainAccounts != nil {
+		for i := 0; i < len(ua.chainAccounts); i++ {
+			str += ua.chainAccounts[i].ToFormatString() + ","
+		}
+		str = strings.TrimSuffix(str, ",")
+	}
+	str += "]}"
+	return str
+}
+
+func (ua *UniversalAccount) ToDetailString() string {
+	str := "{" + "\"username\":\"" + ua.username + "\"" + ", \"pubKey\":\"" + ua.pubKey + "\"" + ", \"uaID\":\"" + ua.uaID + "\""
+	str += ", \"chainAccounts\": ["
+	if ua.chainAccounts != nil {
+		for i := 0; i < len(ua.chainAccounts); i++ {
+			str += ua.chainAccounts[i].ToDetailString() + ","
 		}
 		str = strings.TrimSuffix(str, ",")
 	}

@@ -3,6 +3,7 @@ package transactionContext
 import (
 	"WeCross-Go-SDK/logger"
 	"context"
+	"time"
 )
 
 const (
@@ -17,7 +18,7 @@ const (
 
 var TransactionContextLogger = logger.NewLogger(TransactionContextTag)
 
-var GlobalTransactionContext = NewTransactionContex()
+//var GlobalTransactionContext = NewTransactionContex()
 
 type TransactionContext struct {
 	baseCtx    context.Context
@@ -27,7 +28,7 @@ type TransactionContext struct {
 
 type TxCtx struct {
 	TxID              string
-	Seq               int
+	Seq               int64
 	PathInTransaction []string
 }
 
@@ -94,4 +95,8 @@ func (tctx *TxCtx) Copy() *TxCtx {
 		Seq:               tctx.Seq,
 		PathInTransaction: pathInTx,
 	}
+}
+
+func (tc *TxCtx) CurrentXATransactionSeq() int64 {
+	return time.Now().UnixMilli()
 }
