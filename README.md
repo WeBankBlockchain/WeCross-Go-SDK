@@ -33,36 +33,36 @@ func main() {
 ### RPC API调用
 ```
 func main() {
-    // 首先创建RPC服务并设置配置文件的classpath
-    // classpath下应该放置application.toml
-    rpcService := service.NewWeCrossRPCService()
-    rpcService.SetClassPath("./tomldir") // 如不配置classpath,默认为当前程序运行目录
-    
-    err := rpcService.Init()
-    if err != nil {
-        panic(err)
-    }
-    
-    weCrossRPC := rpc.NewWeCrossRPCModel(rpcService)
-    call, err := weCrossRPC.Login("username", "password")
-    if err != nil {
-        panic(err)
-    }
-    
-    res, err := call.Send()
-    if err != nil {
-        panic(err)
-    }
-    
-    fmt.Printf("The response is: %s\n", res.ToString())
-    
-    // 对response更加复杂的处理,需要知道不同RPI指令返回的response data的数据类型
-    // 更多RPI指令以及所对应的response data类型可查阅官方文档中的WeCross-Go-SDK说明
-    data, ok := res.Data.(*response.UAReceipt)
-    if !ok {
-        panic("type is not right")
-    }
-    fmt.Printf("Universal Account info: %s\n", data.UniversalAccount.ToString())
+	// 首先创建RPC服务并设置配置文件的classpath
+	// classpath下应该放置application.toml
+	rpcService := service.NewWeCrossRPCService()
+	rpcService.SetClassPath("./tomldir") // 如不配置classpath,默认为当前程序运行目录
+
+	err := rpcService.Init()
+	if err != nil {
+		panic(err)
+	}
+
+	weCrossRPC := rpc.NewWeCrossRPCModel(rpcService)
+	call, err := weCrossRPC.Login("username", "password")
+	if err != nil {
+		panic(err)
+	}
+
+	res, err := call.Send()
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Printf("The response is: %s\n", res.ToString())
+
+	// 对response更加复杂的处理,需要知道不同RPI指令返回的response data的数据类型
+	// 更多RPI指令以及所对应的response data类型可查阅官方文档中的WeCross-Go-SDK说明
+	data, ok := res.Data.(*response.UAReceipt)
+	if !ok {
+		panic("type is not right")
+	}
+	fmt.Printf("Universal Account info: %s\n", data.UniversalAccount.ToString())
 }
 ```
 
