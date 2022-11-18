@@ -11,7 +11,61 @@ WeCross Go SDK提供操作跨链资源的Go API，开发者通过SDK可以方便
 
 ## 快速开始
 ### 配置使用日志系统
+```go
+func main() {
+	// 将标准输出添加进日志系统的输出
+	logger.AddStdOutLogSystem(logger.Info)
+	// 自定义一个日志输出系统
+	logger.AddNewLogSystem("./", "test.log", log.LstdFlags, logger.Debug)
+
+	// 在你的go程序中定义不同的日志标签
+	testLogTag := logger.NewLogger("quickStart")
+	// 使用这些标签进行填写日志
+	testLogTag.Infoln("Log here as you wish.")
+	testLogTag.Warnf("Use the log level you like, warn level is: %d", logger.Warn)
+
+	// 日志消息可能需要等待一定时间才能刷入标准输出， 使用flush可以强制刷新
+	// 实际使用时不需要使用Flush
+	logger.Flush()
+}
+```
+
 ### RPC API调用
+```go
+func main() {
+    // 首先创建RPC服务并设置配置文件的classpath
+    // classpath下应该放置application.toml
+    rpcService := service.NewWeCrossRPCService()
+    rpcService.SetClassPath("./tomldir")
+    
+    err := rpcService.Init()
+    if err != nil {
+    panic(err)
+    }
+    
+    weCrossRPC := rpc.NewWeCrossRPCModel(rpcService)
+    call, err := weCrossRPC.Login("username", "password")
+    if err != nil {
+    panic(err)
+    }
+    
+    res, err := call.Send()
+    if err != nil {
+    panic(err)
+    }
+    
+    fmt.Printf("The response is: %s\n", res.ToString())
+    
+    // 对response更加复杂的处理,需要知道不同RPI指令返回的response data的数据类型
+    // 更多RPI指令以及所对应的response data类型可查阅官方文档中的WeCross-Go-SDK说明
+    data, ok := res.Data.(*response.UAReceipt)
+    if !ok {
+    panic("type is not right")
+    }
+    fmt.Printf("Universal Account info: %s\n", data.UniversalAccount.ToString())
+}
+```
+
 ### 资源操作接口
 
 

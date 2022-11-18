@@ -5,36 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="baa19abb-3b5d-4795-8284-70500889a0be" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fortests/WeCrossRPCModel_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/fortests/WeCrossRPCModel_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logger/log.go" beforeDir="false" afterPath="$PROJECT_DIR$/logger/log.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource/Resource.go" beforeDir="false" afterPath="$PROJECT_DIR$/resource/Resource.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/RemoteCall.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/RemoteCall.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/WeCrossRPC.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/WeCrossRPC.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/WeCrossRPCModel.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/WeCrossRPCModel.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/eles/account/UniversalAccount.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/eles/account/UniversalAccount.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/service/WeCrossRPCService.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/service/WeCrossRPCService.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/service/WeCrossService.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/service/WeCrossService.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/service/connections/connection.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/service/connections/connection.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/service/connections/connection_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/service/connections/connection_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/service/httpAsyncClient/httpAsyncClient.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/service/httpAsyncClient/httpAsyncClient.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/service/transactionContext/transactionContext.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/service/transactionContext/transactionContext.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/types/CallBack.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/CallBack.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/types/Request.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/Request.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/types/Response.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/Response.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/types/Response_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/Response_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/types/request/UARequest.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/request/UARequest.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/types/response/AuthCodeReceipt.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/response/AuthCodeReceipt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/types/response/RawXAResponse.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/response/RawXAResponse.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/types/response/RawXATransactionListResponse.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/response/RawXATransactionListResponse.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/types/response/TXReceipt.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/response/TXReceipt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/types/response/UAReceipt.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/response/UAReceipt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/types/response/responseTypes.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/response/responseTypes.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/unmarshal.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/unmarshal.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/url.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/url.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,31 +36,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "DefaultGoTemplateProperty": "Go File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.format.on.save.advertiser.fired": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "configurable..is.expanded": "false",
-    "configurable.GoLibrariesConfigurable.is.expanded": "true",
-    "go.import.settings.migrated": "true",
-    "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "C:/Users/EXIA/Desktop/workspace/testWecrossGoSdk",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.format.on.save.advertiser.fired&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;configurable..is.expanded&quot;: &quot;false&quot;,
+    &quot;configurable.GoLibrariesConfigurable.is.expanded&quot;: &quot;true&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/EXIA/Desktop/workspace/testWecrossGoSdk&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/rpc/eles/resources" />
