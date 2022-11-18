@@ -1,9 +1,28 @@
 # WeCross-Go-SDK
-The Golang SDK for WeCross
+WeCross Go SDK提供操作跨链资源的Go API，开发者通过SDK可以方便快捷地基于[WeCross](https://github.com/WeBankBlockchain/WeCross)开发自己的跨链应用。
 
-本项目开发中，目前可用的SDK如下（开发者可参考实现本Golang版本的SDK）
+## 引用
+    import "github.com/WeBankBlockchain/WeCross-Go-SDK"
 
-* [WeCross-Java-SDK](https://github.com/WeBankBlockchain/WeCross-Java-SDK)
+## 关键特性
+- 提供了一个简单易用的日志系统方便Go程序开发，用户可自定义配置使用
+- 提供调用WeCross[RPC接口](https://wecross.readthedocs.io/zh_CN/latest/docs/manual/api.html)的Go API
+- 封装了跨链资源操作接口
+
+## 快速开始
+### 配置使用日志系统
+### RPC API调用
+### 资源操作接口
+
+
+## 环境依赖
+```
+module WeCross-Go-SDK
+
+go 1.18
+
+require github.com/pelletier/go-toml v1.9.5
+```
 
 
 
@@ -26,4 +45,4 @@ The Golang SDK for WeCross
 
 ## License
 
-开源协议为Apache License 2.0，详情参考[LICENSE](./LICENSE)。
+WeCross Go SDK的开源协议为Apache License 2.0，详情参考[LICENSE](./LICENSE)。

@@ -5,20 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="baa19abb-3b5d-4795-8284-70500889a0be" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/fortests/WeCrossRPCModel_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/WeCrossRPCModel.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/WeCrossRPCModel.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/WeCrossRPC_test.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/eles/account/ChainAccount.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/eles/account/ChainAccount.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/eles/account/UniversalAccount.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/eles/account/UniversalAccount.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/eles/xa/XATransaction.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/eles/xa/XATransactionStep.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/service/WeCrossRPCService.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/service/WeCrossRPCService.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/service/WeCrossService.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/service/WeCrossService.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/service/transactionContext/transactionContext.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/service/transactionContext/transactionContext.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/types/Response.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/Response.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/types/Response_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/Response_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc/types/response/TXReceipt.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/types/response/TXReceipt.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logger/log.go" beforeDir="false" afterPath="$PROJECT_DIR$/logger/log.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
