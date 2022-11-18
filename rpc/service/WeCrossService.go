@@ -1,10 +1,10 @@
 package service
 
 import (
-	"WeCross-Go-SDK/common"
-	"WeCross-Go-SDK/rpc/service/transactionContext"
-	"WeCross-Go-SDK/rpc/types"
-	"WeCross-Go-SDK/rpc/types/response"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/common"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/service/transactionContext"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/types"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/types/response"
 )
 
 type WeCrossService interface {

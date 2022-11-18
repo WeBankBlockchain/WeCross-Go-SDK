@@ -1,7 +1,7 @@
 package response
 
 import (
-	"WeCross-Go-SDK/rpc/eles/xa"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/eles/xa"
 	"encoding/json"
 	"fmt"
 	"strings"

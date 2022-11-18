@@ -1,7 +1,7 @@
 package types
 
 import (
-	"WeCross-Go-SDK/rpc/types/response"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/types/response"
 	"bytes"
 	"net/http"
 	"testing"

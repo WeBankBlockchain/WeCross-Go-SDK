@@ -1,8 +1,8 @@
 package logger
 
 import (
-	"WeCross-Go-SDK/utils"
 	"fmt"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/utils"
 	"io"
 	"log"
 	"os"

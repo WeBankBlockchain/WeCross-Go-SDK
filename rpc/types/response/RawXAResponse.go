@@ -1,8 +1,8 @@
 package response
 
 import (
-	"WeCross-Go-SDK/common"
-	"WeCross-Go-SDK/rpc/eles"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/common"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/eles"
 	"encoding/json"
 	"strconv"
 	"strings"

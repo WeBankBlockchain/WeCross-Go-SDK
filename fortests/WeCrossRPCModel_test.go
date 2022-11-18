@@ -1,12 +1,12 @@
 package fortests
 
 import (
-	"WeCross-Go-SDK/logger"
-	"WeCross-Go-SDK/resource"
-	"WeCross-Go-SDK/rpc"
-	"WeCross-Go-SDK/rpc/eles/account"
-	"WeCross-Go-SDK/rpc/service"
-	"WeCross-Go-SDK/rpc/types/response"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/logger"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/resource"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/eles/account"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/service"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/types/response"
 	"math/rand"
 	"os"
 	"strconv"

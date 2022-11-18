@@ -1,7 +1,7 @@
 package types
 
 import (
-	"WeCross-Go-SDK/common"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/common"
 	"encoding/json"
 	"fmt"
 )

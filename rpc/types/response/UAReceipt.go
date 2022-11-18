@@ -1,10 +1,10 @@
 package response
 
 import (
-	"WeCross-Go-SDK/common"
-	"WeCross-Go-SDK/rpc/eles/account"
-	"WeCross-Go-SDK/utils"
 	"encoding/json"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/common"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/eles/account"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/utils"
 )
 
 type UAReceipt struct {

@@ -1,8 +1,8 @@
 package connections
 
 import (
-	"WeCross-Go-SDK/common"
-	"WeCross-Go-SDK/utils"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/common"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/utils"
 	"crypto/tls"
 	"crypto/x509"
 	"os"

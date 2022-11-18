@@ -1,8 +1,8 @@
 package httpAsyncClient
 
 import (
-	"WeCross-Go-SDK/common"
-	"WeCross-Go-SDK/rpc/service/connections"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/common"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/service/connections"
 	"bytes"
 	"crypto/tls"
 	"crypto/x509"

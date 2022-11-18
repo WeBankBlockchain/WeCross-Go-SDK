@@ -17,7 +17,7 @@ WeCross Go SDK提供操作跨链资源的Go API，开发者通过SDK可以方便
 
 ## 环境依赖
 ```
-module WeCross-Go-SDK
+module github.com/WeBankBlockchain/WeCross-Go-SDK
 
 go 1.18
 
@@ -35,7 +35,7 @@ require github.com/pelletier/go-toml v1.9.5
 
 感谢以下贡献者的付出（此处自动显示所有本项目的代码贡献者）
 
-<img src="https://contrib.rocks/image?repo=WeBankBlockchain/WeCross-Go-SDK" alt="https://github.com/WeBankBlockchain/WeCross-Go-SDK/graphs/contributors" style="zoom:100%;" />
+<img src="https://contrib.rocks/image?repo=WeBankBlockchain/WeCross-Go-SDK" alt="https://github.com/WeBankBlockchain/github.com/WeBankBlockchain/WeCross-Go-SDK/graphs/contributors" style="zoom:100%;" />
 
 ## 开源社区
 

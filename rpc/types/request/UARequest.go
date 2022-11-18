@@ -1,8 +1,8 @@
 package request
 
 import (
-	"WeCross-Go-SDK/logger"
-	"WeCross-Go-SDK/rpc/eles/account"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/logger"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/eles/account"
 	"fmt"
 )
 

@@ -1,7 +1,7 @@
 package account
 
 import (
-	"WeCross-Go-SDK/utils"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/utils"
 	"encoding/json"
 	"strings"
 )

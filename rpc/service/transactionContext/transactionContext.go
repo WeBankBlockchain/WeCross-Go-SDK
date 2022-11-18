@@ -1,7 +1,7 @@
 package transactionContext
 
 import (
-	"WeCross-Go-SDK/logger"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/logger"
 	"context"
 	"time"
 )

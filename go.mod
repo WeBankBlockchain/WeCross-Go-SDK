@@ -1,4 +1,4 @@
-module WeCross-Go-SDK
+module github.com/WeBankBlockchain/WeCross-Go-SDK
 
 go 1.18
 

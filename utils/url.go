@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"WeCross-Go-SDK/common"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/common"
 	"regexp"
 )
 

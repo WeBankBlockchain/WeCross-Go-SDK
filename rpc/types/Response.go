@@ -1,11 +1,11 @@
 package types
 
 import (
-	"WeCross-Go-SDK/common"
-	"WeCross-Go-SDK/rpc/eles/account"
-	"WeCross-Go-SDK/rpc/eles/resources"
-	"WeCross-Go-SDK/rpc/types/response"
-	"WeCross-Go-SDK/utils"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/common"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/eles/account"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/eles/resources"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/types/response"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/utils"
 	"encoding/json"
 	"fmt"
 	"io"

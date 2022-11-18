@@ -1,6 +1,6 @@
 package utils
 
-import "WeCross-Go-SDK/common"
+import "github.com/WeBankBlockchain/WeCross-Go-SDK/common"
 
 func AnyToString(obj any) string {
 	if obj == nil {

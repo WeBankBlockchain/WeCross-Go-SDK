@@ -1,15 +1,15 @@
 package rpc
 
 import (
-	"WeCross-Go-SDK/common"
-	"WeCross-Go-SDK/common/cryptos"
-	"WeCross-Go-SDK/logger"
-	"WeCross-Go-SDK/rpc/eles"
-	"WeCross-Go-SDK/rpc/eles/account"
-	"WeCross-Go-SDK/rpc/service"
-	"WeCross-Go-SDK/rpc/types"
-	"WeCross-Go-SDK/rpc/types/request"
-	"WeCross-Go-SDK/rpc/types/response"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/common"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/common/cryptos"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/logger"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/eles"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/eles/account"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/service"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/types"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/types/request"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/types/response"
 	"regexp"
 	"strings"
 )

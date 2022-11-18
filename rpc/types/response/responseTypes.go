@@ -1,8 +1,8 @@
 package response
 
 import (
-	"WeCross-Go-SDK/rpc/eles/account"
-	"WeCross-Go-SDK/rpc/eles/resources"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/eles/account"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/eles/resources"
 	"reflect"
 )
 

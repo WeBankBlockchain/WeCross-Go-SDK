@@ -1,8 +1,8 @@
 package rpc
 
 import (
-	"WeCross-Go-SDK/common"
-	"WeCross-Go-SDK/rpc/eles/account"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/common"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/eles/account"
 )
 
 type WeCrossRPC interface {

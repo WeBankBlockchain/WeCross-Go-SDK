@@ -1,13 +1,13 @@
 package resource
 
 import (
-	"WeCross-Go-SDK/common"
-	"WeCross-Go-SDK/logger"
-	"WeCross-Go-SDK/rpc"
-	"WeCross-Go-SDK/rpc/eles/resources"
-	"WeCross-Go-SDK/rpc/types"
-	"WeCross-Go-SDK/rpc/types/response"
-	"WeCross-Go-SDK/utils"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/common"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/logger"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/eles/resources"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/types"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/types/response"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/utils"
 )
 
 const (

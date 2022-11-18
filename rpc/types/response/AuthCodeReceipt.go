@@ -1,9 +1,9 @@
 package response
 
 import (
-	"WeCross-Go-SDK/common"
 	"encoding/json"
 	"fmt"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/common"
 )
 
 type AuthCodeReceipt struct {
