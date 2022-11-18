@@ -1,6 +1,10 @@
 package service
 
 import (
+	"fmt"
+	"strings"
+	"time"
+
 	"github.com/WeBankBlockchain/WeCross-Go-SDK/common"
 	"github.com/WeBankBlockchain/WeCross-Go-SDK/logger"
 	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/eles"
@@ -12,9 +16,6 @@ import (
 	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/types/request"
 	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/types/response"
 	"github.com/WeBankBlockchain/WeCross-Go-SDK/utils"
-	"fmt"
-	"strings"
-	"time"
 )
 
 const (
@@ -32,27 +33,31 @@ type WeCrossRPCService struct {
 
 	authenticationManager *authentication.AuthenticationManager
 	transactionContext    *transactionContext.TransactionContext
+
+	classpath string
 }
 
 func NewWeCrossRPCService() *WeCrossRPCService {
 	logger := logger.NewLogger(WeCrossRPCServiceTag)
+	classpath, _ := utils.BackPwd()
 	return &WeCrossRPCService{
 		logger:                logger,
 		authenticationManager: authentication.NewAuthenticationManager(),
 		transactionContext:    transactionContext.NewTransactionContex(),
+		classpath:             classpath,
 	}
 }
 
 func (wcs *WeCrossRPCService) SetClassPath(dirpath string) {
-	utils.SetClassPath(dirpath)
+	wcs.classpath = dirpath
 }
 
 func (wcs *WeCrossRPCService) Init() *common.WeCrossSDKError {
-	config, err := utils.GetToml(utils.ReadClassPath(common.APPLICATION_CONFIG_FILE))
+	config, err := utils.GetToml(utils.ReadClassPath(common.APPLICATION_CONFIG_FILE, wcs.classpath))
 	if err != nil {
 		return err
 	}
-	connection, err := connections.NewConnection(config)
+	connection, err := connections.NewConnection(config, wcs.classpath)
 	if err != nil {
 		return err
 	}

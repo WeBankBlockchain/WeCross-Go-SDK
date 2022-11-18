@@ -11,7 +11,7 @@ WeCross Go SDK提供操作跨链资源的Go API，开发者通过SDK可以方便
 
 ## 快速开始
 ### 配置使用日志系统
-```go
+```
 func main() {
 	// 将标准输出添加进日志系统的输出
 	logger.AddStdOutLogSystem(logger.Info)
@@ -25,33 +25,33 @@ func main() {
 	testLogTag.Warnf("Use the log level you like, warn level is: %d", logger.Warn)
 
 	// 日志消息可能需要等待一定时间才能刷入标准输出， 使用flush可以强制刷新
-	// 实际使用时不需要使用Flush
+	// 此处为了在标准输出中显示测试结果使用Flush，实际使用时无需用户自己去Flush
 	logger.Flush()
 }
 ```
 
 ### RPC API调用
-```go
+```
 func main() {
     // 首先创建RPC服务并设置配置文件的classpath
     // classpath下应该放置application.toml
     rpcService := service.NewWeCrossRPCService()
-    rpcService.SetClassPath("./tomldir")
+    rpcService.SetClassPath("./tomldir") // 如不配置classpath,默认为当前程序运行目录
     
     err := rpcService.Init()
     if err != nil {
-    panic(err)
+        panic(err)
     }
     
     weCrossRPC := rpc.NewWeCrossRPCModel(rpcService)
     call, err := weCrossRPC.Login("username", "password")
     if err != nil {
-    panic(err)
+        panic(err)
     }
     
     res, err := call.Send()
     if err != nil {
-    panic(err)
+        panic(err)
     }
     
     fmt.Printf("The response is: %s\n", res.ToString())
@@ -60,13 +60,56 @@ func main() {
     // 更多RPI指令以及所对应的response data类型可查阅官方文档中的WeCross-Go-SDK说明
     data, ok := res.Data.(*response.UAReceipt)
     if !ok {
-    panic("type is not right")
+        panic("type is not right")
     }
     fmt.Printf("Universal Account info: %s\n", data.UniversalAccount.ToString())
 }
 ```
 
 ### 资源操作接口
+
+```
+func main() {
+	// 首先创建RPC服务并设置配置文件的classpath
+	// classpath下应该放置application.toml
+	rpcService := service.NewWeCrossRPCService()
+	rpcService.SetClassPath("./tomldir") // 如不配置classpath,默认为当前程序运行目录
+
+	err := rpcService.Init()
+	if err != nil {
+		panic(err)
+	}
+
+	weCrossRPC := rpc.NewWeCrossRPCModel(rpcService)
+
+	//使用resource前需要先登录
+	call, err := weCrossRPC.Login("username", "password")
+	if err != nil {
+		panic(err)
+	}
+	_, err = call.Send()
+	if err != nil {
+		panic(err)
+	}
+
+	// 使用NewResource绑定resource
+	testResource := resource.NewResource(weCrossRPC, "test.test.test")
+
+	// 更多资源相关API请查阅官方文档
+	if !testResource.IsActive() {
+		panic("the path is not active")
+	}
+
+	res, err := testResource.SendTransaction("XXXmethod", "arg1", "arg...")
+	if err != nil {
+		panic(err)
+	}
+	
+	fmt.Println("Result:")
+	fmt.Println(res)
+}
+
+```
 
 
 ## 环境依赖

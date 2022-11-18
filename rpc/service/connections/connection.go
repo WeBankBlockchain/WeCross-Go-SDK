@@ -11,9 +11,11 @@ type Connection struct {
 	server, sslKey, sslCert, caCert string
 	sslSwitch                       int
 	urlPrefix                       string
+
+	classpath string
 }
 
-func NewConnection(config *toml.Tree) (*Connection, *common.WeCrossSDKError) {
+func NewConnection(config *toml.Tree, classpath string) (*Connection, *common.WeCrossSDKError) {
 	server, ok := config.Get("connection.server").(string)
 	if !ok {
 		return nil, common.NewWeCrossSDKFromString(common.FIELD_MISSING, "Something wrong with parsing [connection.server], please check configuration")
@@ -55,6 +57,8 @@ func NewConnection(config *toml.Tree) (*Connection, *common.WeCrossSDKError) {
 		caCert:    caCert,
 		sslSwitch: int(sslSwitch),
 		urlPrefix: formatedUrlPrefix,
+
+		classpath: classpath,
 	}
 	return connection, nil
 }
@@ -68,13 +72,13 @@ func (conn *Connection) GetServer() string {
 	return conn.server
 }
 func (conn *Connection) GetSslKey() string {
-	return utils.ReadClassPath(conn.sslKey)
+	return utils.ReadClassPath(conn.sslKey, conn.classpath)
 }
 func (conn *Connection) GetSslCert() string {
-	return utils.ReadClassPath(conn.sslCert)
+	return utils.ReadClassPath(conn.sslCert, conn.classpath)
 }
 func (conn *Connection) GetCaCert() string {
-	return utils.ReadClassPath(conn.caCert)
+	return utils.ReadClassPath(conn.caCert, conn.classpath)
 }
 func (conn *Connection) GetSslSwitch() int {
 	return conn.sslSwitch

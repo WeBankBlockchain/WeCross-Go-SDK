@@ -8,6 +8,11 @@
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc/service/WeCrossRPCService.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/service/WeCrossRPCService.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc/service/connections/connection.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/service/connections/connection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc/service/connections/connection_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc/service/connections/connection_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/config_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/config_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +26,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" url="file://$USER_HOME$/sdk/go1.19" />
+  <component name="GOROOT" url="file:///usr/local/go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -52,7 +57,7 @@
     &quot;configurable.GoLibrariesConfigurable.is.expanded&quot;: &quot;true&quot;,
     &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
     &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/EXIA/Desktop/workspace/testWecrossGoSdk&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/leocao&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -70,17 +75,17 @@
       <recent name="$PROJECT_DIR$/common/cryptos" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.TestParseUAReceipt in WeCross-Go-SDK/rpc/types">
-    <configuration name="TestCheckResourcePath in WeCross-Go-SDK/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Go Test.TestConnection_LoadToml in github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/service/connections">
+    <configuration name="TestConnection_LoadToml in github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/service/connections" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="WeCross-Go-SDK" />
-      <working_directory value="$PROJECT_DIR$/utils" />
+      <working_directory value="$PROJECT_DIR$/rpc/service/connections" />
       <root_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <package value="WeCross-Go-SDK/utils" />
+      <package value="github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/service/connections" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <framework value="gotest" />
-      <pattern value="^\QTestCheckResourcePath\E$" />
+      <pattern value="^\QTestConnection_LoadToml\E$" />
       <method v="2" />
     </configuration>
     <configuration name="TestLogSystemInstance in WeCross_Go_SDK/logger (1)" type="GoTestRunConfiguration" factoryName="Go Test" nameIsGenerated="true">
@@ -145,11 +150,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestConnection_LoadToml in github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/service/connections" />
         <item itemvalue="Go Test.TestParseUAReceipt in WeCross-Go-SDK/rpc/types" />
         <item itemvalue="Go Test.TestUniversalAccountParse in WeCross-Go-SDK/rpc/eles/account" />
         <item itemvalue="Go Test.TestParseResponse in WeCross-Go-SDK/rpc/types (1)" />
         <item itemvalue="Go Test.TestParseResponse in WeCross-Go-SDK/rpc/types" />
-        <item itemvalue="Go Test.TestCheckResourcePath in WeCross-Go-SDK/utils" />
       </list>
     </recent_temporary>
   </component>

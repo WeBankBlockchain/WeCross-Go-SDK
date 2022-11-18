@@ -1,10 +1,10 @@
 package connections
 
 import (
-	"github.com/WeBankBlockchain/WeCross-Go-SDK/common"
-	"github.com/WeBankBlockchain/WeCross-Go-SDK/utils"
 	"crypto/tls"
 	"crypto/x509"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/common"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/utils"
 	"os"
 	"testing"
 )
@@ -12,13 +12,12 @@ import (
 var TEST_APPLICATION_CONFIG_DIR = "../../../fortests/tomldir"
 
 func TestConnection_LoadToml(t *testing.T) {
-	utils.SetClassPath(TEST_APPLICATION_CONFIG_DIR)
-	config, err := utils.GetToml(utils.ReadClassPath(common.APPLICATION_CONFIG_FILE))
+	config, err := utils.GetToml(utils.ReadClassPath(common.APPLICATION_CONFIG_FILE, TEST_APPLICATION_CONFIG_DIR))
 	if err != nil {
 		t.Fatalf("fail in get toml: %v", err)
 	}
 
-	connection, err := NewConnection(config)
+	connection, err := NewConnection(config, TEST_APPLICATION_CONFIG_DIR)
 	if err != nil {
 		t.Fatalf("fail in new connection: %v", err)
 	}
