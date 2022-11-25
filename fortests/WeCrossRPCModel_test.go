@@ -1,17 +1,18 @@
 package fortests
 
 import (
+	"math/rand"
+	"os"
+	"strconv"
+	"testing"
+	"time"
+
 	"github.com/WeBankBlockchain/WeCross-Go-SDK/logger"
 	"github.com/WeBankBlockchain/WeCross-Go-SDK/resource"
 	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc"
 	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/eles/account"
 	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/service"
 	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/types/response"
-	"math/rand"
-	"os"
-	"strconv"
-	"testing"
-	"time"
 )
 
 var (
@@ -313,6 +314,8 @@ func TestXATransactionRPCInterface(t *testing.T) {
 	testRpcCase("Call", weCrossRPCModel.Call("payment.bcos.evidence", "queryEvidence", evidence1))
 	testRpcCase("Call", weCrossRPCModel.Call("payment.fabric.evidence", "queryEvidence", evidence1))
 
+	testRpcCase("GetXATransaction", weCrossRPCModel.GetXATransaction(transactionID, []string{"payment.bcos.evidence", "payment.fabric.evidence"}))
+
 	// ---------------- take a break, and look through the historical XAtransactions -----------
 
 	testRpcCase("ListXATransactions", weCrossRPCModel.ListXATransactions(10))
@@ -353,5 +356,7 @@ func TestXATransactionRPCInterface(t *testing.T) {
 
 	testRpcCase("Call", weCrossRPCModel.Call("payment.bcos.evidence", "queryEvidence", evidence2))
 	testRpcCase("Call", weCrossRPCModel.Call("payment.fabric.evidence", "queryEvidence", evidence2))
+
+	testRpcCase("GetXATransaction", weCrossRPCModel.GetXATransaction(transactionID, []string{"payment.bcos.evidence", "payment.fabric.evidence"}))
 
 }
