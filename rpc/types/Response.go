@@ -1,13 +1,13 @@
 package types
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/WeBankBlockchain/WeCross-Go-SDK/common"
 	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/eles/account"
 	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/eles/resources"
 	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/types/response"
 	"github.com/WeBankBlockchain/WeCross-Go-SDK/utils"
-	"encoding/json"
-	"fmt"
 	"io"
 	"net/http"
 )
@@ -127,6 +127,10 @@ func ParseResponse(httpResponse *http.Response, responseType response.ResponseTy
 		rawXATransactionListResponse := new(response.RawXATransactionListResponse)
 		rawXATransactionListResponse.ParseSelfFromJson(dataBytes)
 		data = rawXATransactionListResponse
+	case response.XATransactionResponse:
+		rawXATransactionResponse := new(response.RawXATransactionResponse)
+		rawXATransactionResponse.ParseSelfFromJson(dataBytes)
+		data = rawXATransactionResponse
 
 	default:
 

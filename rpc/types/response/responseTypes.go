@@ -21,6 +21,7 @@ const (
 	XATransactionListResponse ResponseType = "XATransactionListResponse"
 	UAResponse                ResponseType = "UAResponse"
 	XAResponse                ResponseType = "XAResponse"
+	XATransactionResponse     ResponseType = "XATransactionResponse"
 )
 
 var (
@@ -37,5 +38,6 @@ var (
 		XATransactionListResponse: reflect.TypeOf(new(RawXATransactionListResponse)),
 		UAResponse:                reflect.TypeOf(new(UAReceipt)),
 		XAResponse:                reflect.TypeOf(new(RawXAResponse)),
+		XATransactionResponse:     reflect.TypeOf(new(RawXATransactionResponse)),
 	}
 )

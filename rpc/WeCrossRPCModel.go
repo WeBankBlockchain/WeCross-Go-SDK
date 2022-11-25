@@ -205,7 +205,7 @@ func (w *WeCrossRPCModel) GetXATransaction(transactionID string, paths []string)
 		weCrossService: w.weCrossService,
 		httpMethod:     "POST",
 		uri:            "/xa/getXATransaction",
-		responseType:   response.XAResponse,
+		responseType:   response.XATransactionResponse,
 		request:        wrappedRequest,
 	}
 }

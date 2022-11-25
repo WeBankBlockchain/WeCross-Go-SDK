@@ -6,7 +6,7 @@ type XA struct {
 	XaTransactionID string   `json:"xaTransactionID"`
 	UserName        string   `json:"username"`
 	Status          string   `json:"status"`
-	TimeStamp       int      `json:"timestamp"`
+	TimeStamp       int64    `json:"timestamp"`
 	Paths           []string `json:"paths"`
 }
 
