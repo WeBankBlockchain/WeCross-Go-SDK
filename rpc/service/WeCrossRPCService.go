@@ -1,21 +1,25 @@
 package service
 
 import (
-	"WeCross-Go-SDK/common"
-	"WeCross-Go-SDK/logger"
-	"WeCross-Go-SDK/rpc/eles"
-	"WeCross-Go-SDK/rpc/service/authentication"
-	"WeCross-Go-SDK/rpc/service/httpAsyncClient"
-	"WeCross-Go-SDK/rpc/types"
-	"WeCross-Go-SDK/rpc/types/response"
-	"WeCross-Go-SDK/utils"
 	"fmt"
 	"strings"
 	"time"
+
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/common"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/logger"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/eles"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/service/authentication"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/service/connections"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/service/httpAsyncClient"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/service/transactionContext"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/types"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/types/request"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/rpc/types/response"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/utils"
 )
 
 const (
-	WeCrossRPCServiceTag = "WeCrossRPC"
+	WeCrossRPCServiceTag = "WeCrossRPCService"
 
 	Max_Send_Wait_Time = 20 * time.Second
 )
@@ -28,22 +32,32 @@ type WeCrossRPCService struct {
 	urlPrefix  string
 
 	authenticationManager *authentication.AuthenticationManager
+	transactionContext    *transactionContext.TransactionContext
+
+	classpath string
 }
 
 func NewWeCrossRPCService() *WeCrossRPCService {
 	logger := logger.NewLogger(WeCrossRPCServiceTag)
+	classpath, _ := utils.BackPwd()
 	return &WeCrossRPCService{
 		logger:                logger,
 		authenticationManager: authentication.NewAuthenticationManager(),
+		transactionContext:    transactionContext.NewTransactionContex(),
+		classpath:             classpath,
 	}
 }
 
+func (wcs *WeCrossRPCService) SetClassPath(dirpath string) {
+	wcs.classpath = dirpath
+}
+
 func (wcs *WeCrossRPCService) Init() *common.WeCrossSDKError {
-	config, err := utils.GetToml(common.APPLICATION_CONFIG_FILE)
+	config, err := utils.GetToml(utils.ReadClassPath(common.APPLICATION_CONFIG_FILE, wcs.classpath))
 	if err != nil {
 		return err
 	}
-	connection, err := NewConnection(config)
+	connection, err := connections.NewConnection(config, wcs.classpath)
 	if err != nil {
 		return err
 	}
@@ -74,7 +88,7 @@ func (wcs *WeCrossRPCService) Init() *common.WeCrossSDKError {
 	return nil
 }
 
-func (wcs *WeCrossRPCService) Send(httpMethod string, uri string, request *types.Request, responseType response.ResponseType) (*types.Response, *common.WeCrossSDKError) {
+func (wcs *WeCrossRPCService) Send(httpMethod string, uri string, inputRequest *types.Request, responseType response.ResponseType) (*types.Response, *common.WeCrossSDKError) {
 	var finalResponse *types.Response
 	var finalError *common.WeCrossSDKError
 	finish := make(chan struct{})
@@ -99,10 +113,33 @@ func (wcs *WeCrossRPCService) Send(httpMethod string, uri string, request *types
 	}
 
 	callBack := types.NewCallBack(onSuccess, onFailed)
-	wcs.AsyncSend(httpMethod, uri, request, responseType, callBack)
+	wcs.AsyncSend(httpMethod, uri, inputRequest, responseType, callBack)
 	outTimer := time.NewTimer(Max_Send_Wait_Time)
 	select {
 	case <-finish:
+		wcs.logger.Debugf("response: %s", finalResponse.ToString())
+		if finalError != nil {
+			return finalResponse, finalError
+		}
+
+		if responseType == response.UAResponse {
+			if uaRq, ok := inputRequest.Data.(*request.UARequest); ok {
+				err := wcs.getUAResponseInfo(uri, uaRq, finalResponse)
+				if err != nil {
+					return finalResponse, err
+				}
+			} else if uaRq, ok := inputRequest.Ext.(*request.UARequest); ok {
+				err := wcs.getUAResponseInfo(uri, uaRq, finalResponse)
+				if err != nil {
+					return finalResponse, err
+				}
+			}
+		}
+
+		if responseType == response.XAResponse {
+			wcs.getXAResponseInfo(uri, inputRequest, finalResponse)
+		}
+
 		return finalResponse, finalError
 	case <-outTimer.C:
 		return nil, common.NewWeCrossSDKFromString(common.RPC_ERROR, "fain in Send: time out while waiting for response")
@@ -180,4 +217,47 @@ func (wcs *WeCrossRPCService) checkRequest(request *types.Request) *common.WeCro
 		return common.NewWeCrossSDKFromString(common.RPC_ERROR, "Request version is empty")
 	}
 	return nil
+}
+
+func (wcs *WeCrossRPCService) getUAResponseInfo(uri string, uaRequest *request.UARequest, uaResponse *types.Response) *common.WeCrossSDKError {
+	query := utils.GetUriQuery(uri)
+	if query == "login" {
+		credential := ""
+		uaRp, ok := uaResponse.Data.(*response.UAReceipt)
+		if ok {
+			credential = uaRp.Credential
+		}
+		wcs.logger.Infof("CurrentUser: %s", uaRequest.UserName)
+		if len(credential) == 0 {
+			wcs.logger.Errorln("Login fail, credential in UAResponse is null")
+			return common.NewWeCrossSDKFromString(common.RPC_ERROR, "Login fail, credential in UAResponse is null!")
+		}
+		wcs.authenticationManager.SetCurrentUser(uaRequest.UserName, credential)
+	}
+	if query == "logout" {
+		wcs.logger.Infof("CurrentUser: %s logout.", wcs.authenticationManager.GetCurrentUser())
+		wcs.authenticationManager.ClearCurrentUser()
+	}
+	return nil
+}
+
+func (wcs *WeCrossRPCService) getXAResponseInfo(uri string, inRequest *types.Request, xaResponse *types.Response) {
+	query := utils.GetUriQuery(uri)
+	if query == "startXATransaction" && xaResponse.ErrorCode == 0 {
+		xaRequest, ok := inRequest.Data.(*request.XATransactionRequest)
+		if !ok {
+			return
+		}
+		txCtx := wcs.transactionContext.GetContex()
+		txCtx.TxID = xaRequest.XaTransactionID
+		txCtx.Seq = 1
+		txCtx.PathInTransaction = xaRequest.Paths
+		wcs.transactionContext.SetContex(txCtx)
+	} else if (query == "commitXATransaction") || query == "rollbackXATransaction" && xaResponse.ErrorCode == 0 {
+		wcs.transactionContext.ClearAll()
+	}
+}
+
+func (wcs *WeCrossRPCService) GetTransactionContex() *transactionContext.TxCtx {
+	return wcs.transactionContext.GetContex()
 }

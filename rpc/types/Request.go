@@ -1,7 +1,7 @@
 package types
 
 import (
-	"WeCross-Go-SDK/common"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/common"
 	"encoding/json"
 	"fmt"
 )
@@ -9,7 +9,8 @@ import (
 type Request struct {
 	Version  string    `json:"version"`
 	Data     Data      `json:"data"`
-	callBack *CallBack `json:"-"`
+	Ext      Data      `json:"-"`
+	CallBack *CallBack `json:"-"`
 }
 
 func NewRequest(data Data) *Request {

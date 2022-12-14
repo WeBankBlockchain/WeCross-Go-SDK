@@ -1,6 +1,8 @@
 package common
 
-type ErrorCode int
+import "strconv"
+
+type ErrorCode int // 0 is success
 
 const (
 	INTERNAL_ERROR ErrorCode = 100
@@ -21,8 +23,13 @@ const (
 	INVALID_CONTRACT  ErrorCode = 302
 )
 
+func (ec ErrorCode) ToString() string {
+	return strconv.Itoa(int(ec))
+}
+
 type StatusCode int
 
 const (
 	SUCCESS StatusCode = 0
+	FAIL    StatusCode = -1
 )

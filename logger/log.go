@@ -1,8 +1,8 @@
 package logger
 
 import (
-	"WeCross-Go-SDK/utils"
 	"fmt"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/utils"
 	"io"
 	"log"
 	"os"
@@ -17,7 +17,17 @@ func openLogFile(datadir string, filename string) *os.File {
 	return file
 }
 
-func New(datadir string, logFile string, logLevel int) LogSystem {
+// AddStdOutLogSystem quickly add an stdOut log system with the given log level
+func AddStdOutLogSystem(logLevel int) LogSystem {
+	var sys LogSystem
+	sys = NewStdLogSystem(os.Stdout, log.LstdFlags, LogLevel(logLevel))
+	AddLogSystem(sys)
+	return sys
+}
+
+// AddNewLogSystem can customize a log system with the given args and add it.
+// If logFile is empty, will use stdOut as the log output.
+func AddNewLogSystem(datadir string, logFile string, flags int, logLevel int) LogSystem {
 	var writer io.Writer
 	if logFile == "" {
 		writer = os.Stdout
@@ -26,7 +36,7 @@ func New(datadir string, logFile string, logLevel int) LogSystem {
 	}
 
 	var sys LogSystem
-	sys = NewStdLogSystem(writer, log.LstdFlags, LogLevel(logLevel))
+	sys = NewStdLogSystem(writer, flags, LogLevel(logLevel))
 	AddLogSystem(sys)
 
 	return sys

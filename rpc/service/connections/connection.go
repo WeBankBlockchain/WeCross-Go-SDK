@@ -1,9 +1,9 @@
-package service
+package connections
 
 import (
-	"WeCross-Go-SDK/common"
-	"WeCross-Go-SDK/utils"
 	"fmt"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/common"
+	"github.com/WeBankBlockchain/WeCross-Go-SDK/utils"
 	"github.com/pelletier/go-toml"
 )
 
@@ -11,9 +11,11 @@ type Connection struct {
 	server, sslKey, sslCert, caCert string
 	sslSwitch                       int
 	urlPrefix                       string
+
+	classpath string
 }
 
-func NewConnection(config *toml.Tree) (*Connection, *common.WeCrossSDKError) {
+func NewConnection(config *toml.Tree, classpath string) (*Connection, *common.WeCrossSDKError) {
 	server, ok := config.Get("connection.server").(string)
 	if !ok {
 		return nil, common.NewWeCrossSDKFromString(common.FIELD_MISSING, "Something wrong with parsing [connection.server], please check configuration")
@@ -35,12 +37,14 @@ func NewConnection(config *toml.Tree) (*Connection, *common.WeCrossSDKError) {
 
 	sslSwitch, ok := config.Get("connection.sslSwitch").(int64)
 	if !ok {
-		return nil, common.NewWeCrossSDKFromString(common.FIELD_MISSING, "Something wrong with parsing [connection.sslSwitch], please check configuration")
+		sslSwitch = 0 // default 0
+		//return nil, common.NewWeCrossSDKFromString(common.FIELD_MISSING, "Something wrong with parsing [connection.sslSwitch], please check configuration")
 	}
 
 	urlPrefix, ok := config.Get("connection.urlPrefix").(string)
 	if !ok {
-		return nil, common.NewWeCrossSDKFromString(common.FIELD_MISSING, "Something wrong with parsing [connection.urlPrefix], please check configuration")
+		urlPrefix = "" // could be empty
+		//return nil, common.NewWeCrossSDKFromString(common.FIELD_MISSING, "Something wrong with parsing [connection.urlPrefix], please check configuration")
 	}
 	formatedUrlPrefix, err := utils.FormatUrlPrefix(urlPrefix)
 	if err != nil {
@@ -53,6 +57,8 @@ func NewConnection(config *toml.Tree) (*Connection, *common.WeCrossSDKError) {
 		caCert:    caCert,
 		sslSwitch: int(sslSwitch),
 		urlPrefix: formatedUrlPrefix,
+
+		classpath: classpath,
 	}
 	return connection, nil
 }
@@ -66,13 +72,13 @@ func (conn *Connection) GetServer() string {
 	return conn.server
 }
 func (conn *Connection) GetSslKey() string {
-	return conn.sslKey
+	return utils.ReadClassPath(conn.sslKey, conn.classpath)
 }
 func (conn *Connection) GetSslCert() string {
-	return conn.sslCert
+	return utils.ReadClassPath(conn.sslCert, conn.classpath)
 }
 func (conn *Connection) GetCaCert() string {
-	return conn.caCert
+	return utils.ReadClassPath(conn.caCert, conn.classpath)
 }
 func (conn *Connection) GetSslSwitch() int {
 	return conn.sslSwitch
